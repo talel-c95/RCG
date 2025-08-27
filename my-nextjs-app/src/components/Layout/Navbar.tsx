@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import logoPng from "@/images/craiyon_162456_image.png";
 import { useI18n } from "@/contexts/I18nContext";
 import ThemeToggleButton from "@/components/Buttons/ThemeButton";
 import LanguageButton from "@/components/Buttons/LanguageButton";
@@ -36,44 +38,43 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out
-                    ${isScrolled 
-                      ? 'mx-8 mt-4 bg-background/90 backdrop-blur-xl shadow-lg shadow-black/10 border border-border/30 rounded-2xl' 
-                      : 'bg-background/60 backdrop-blur-md border-b border-border/10'
-                    }`}>
-      <div className={`transition-all duration-500 ${isScrolled ? 'max-w-7xl mx-auto px-6' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}`}>
-        <div className={`flex justify-between items-center transition-all duration-500
-                        ${isScrolled ? 'h-14' : 'h-16'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-transparent transition-opacity duration-700 ease-in-out`}>
+      <div className={`transition-all duration-700 ease-in-out ${isScrolled ? 'max-w-7xl mx-auto px-6' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}`}>
+        <div className={`relative flex justify-center items-center transition-all duration-700 ease-in-out
+                        ${isScrolled ? 'h-16' : 'h-16'}`}>
                      {/* Logo */}
-           <div className="flex items-center space-x-3">
+           <div className={`absolute left-6 top-1/2 -translate-y-1/2 flex items-center space-x-3 transition-opacity duration-700 ease-in-out ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
              <div className={`relative transition-all duration-500
-                            ${isScrolled ? 'w-7 h-7' : 'w-8 h-8'}`}>
-               <img
-                 src="/logo.png"
+                            ${isScrolled ? 'w-20 h-20' : 'w-22 h-22'}`}>
+               <Image
+                 src={logoPng}
                  alt="Rakhami Group Logo"
-                 className="w-full h-full object-contain"
+                 fill
+                 priority
+                 className="object-contain"
                />
              </div>
-             <span className={`font-bold bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent transition-all duration-500
+             {/* <span className={`font-bold bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent transition-all duration-500
                              ${isScrolled ? 'text-lg' : 'text-xl'}`}>
                {t("rakhamiGroup")}
-             </span>
+             </span> */}
            </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className={`hidden md:flex items-center space-x-8 transition-all ${isScrolled ? 'duration-700 ease-in-out' : 'duration-0'}
+                          ${isScrolled ? 'bg-black/55 dark:bg-gray-900/80 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 shadow-md' : ''}`}>
             {navigationItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className={`group relative font-medium transition-all duration-300
+                className={`group relative font-medium transition-all duration-500 ease-in-out
                          ${isScrolled 
-                           ? 'text-foreground/90 hover:text-foreground text-sm' 
-                           : 'text-foreground/80 hover:text-foreground text-base'
+                           ? 'text-white/90 hover:text-white text-base' 
+                           : 'text-white/90 hover:text-white text-base'
                          }
                          after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
                          after:bg-gradient-to-r after:from-primary after:to-highlight
-                         after:transition-all after:duration-300 hover:after:w-full`}
+                         after:transition-all after:duration-500 hover:after:w-full`}
               >
                 {item.name}
               </a>
@@ -81,14 +82,14 @@ const Navbar = () => {
           </div>
 
           {/* Right side buttons */}
-          <div className="flex items-center space-x-3">
+          <div className={`absolute right-6 top-1/2 -translate-y-1/2 flex items-center space-x-3 transition-opacity duration-700 ease-in-out ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <LanguageButton />
             <ThemeToggleButton />
             
             {/* Mobile menu button */}
             <button
               onClick={toggleMenu}
-              className={`md:hidden rounded-lg border text-foreground transition-all duration-300
+              className={`md:hidden rounded-lg border text-foreground transition-all duration-500 ease-in-out
                        ${isScrolled 
                          ? 'p-1.5 bg-surface/60 border-border/40 hover:bg-surface/80 hover:border-highlight/40' 
                          : 'p-2 bg-surface/50 border-border/50 hover:bg-surface hover:border-highlight/30'
@@ -96,7 +97,7 @@ const Navbar = () => {
               aria-label="Toggle menu"
             >
               <svg
-                className={`transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`}
+                className={`transition-all duration-500 ease-in-out ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
