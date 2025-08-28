@@ -1,0 +1,43 @@
+import React from 'react';
+
+interface RetailCardProps {
+  title: string;
+  description: string;
+  image?: string;
+  className?: string;
+  onClick?: () => void;
+}
+
+const RetailCard: React.FC<RetailCardProps> = ({ 
+  title, 
+  description, 
+  image = "https://via.placeholder.com/400x600",
+  className = "",
+  onClick
+}) => {
+  return (
+    <div 
+      className={`w-100 h-120 rounded-3xl shadow-xl overflow-hidden ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      onClick={onClick}
+    >
+      <div className="relative h-full w-full">
+        {/* Background Image */}
+        <img 
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+        
+        {/* Overlay with Label and Description */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+          <div className="absolute bottom-0 left-0 p-8 text-white">
+            <h3 className="text-2xl font-bold mb-3">{title}</h3>
+            <p className="text-sm leading-relaxed opacity-90 max-w-xs">{description}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RetailCard;
