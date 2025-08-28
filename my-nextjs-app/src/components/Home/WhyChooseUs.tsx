@@ -44,7 +44,7 @@ const WhyChooseUs = () => {
           setIsTransitioning(false)
         }, 300) // Brief pause during transition
       }
-    }, 5000)
+    }, 2500)
 
     return () => clearInterval(interval)
   }, [isTransitioning])

@@ -58,7 +58,7 @@ export default function IndustriesSection() {
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 0.5;
+    const scrollSpeed = 5; // Increased from 0.5 for faster scrolling
     const scrollInterval = 50; // Faster updates for smoother movement
     let isPaused = false;
 
