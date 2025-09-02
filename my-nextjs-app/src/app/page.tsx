@@ -7,6 +7,8 @@ import IndustriesPage from "@/app/Industries/page";
 import ServicesPage from "@/app/Services/page";
 import Footer from "@/components/Layout/Footer";
 import AboutPage from "@/app/About/page";
+import FAQPage from "@/app/FQA/page";
+import ContactPage from "@/app/Contact/page";
 
 export default function Home() {
   const { t } = useI18n();
@@ -24,16 +26,21 @@ export default function Home() {
       </section>
 
       {/* Industries Section */}
-      <section id="industries">
+      <section id="Industries">
         <IndustriesPage />
       </section>
       
-      <section id="about">
+      <section id="About">
         <AboutPage />
       </section>
       
-      <section id="services">
+      <section id="Services">
         <ServicesPage />
+      </section>
+
+
+      <section id="FQA">
+        <FAQPage />
       </section>
 
       {/* Footer Section */}
