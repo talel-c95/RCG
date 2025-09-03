@@ -64,7 +64,7 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleNavigation = (item: any) => {
+  const handleNavigation = (item: { name: string; href: string; isHash: boolean }) => {
     if (item.isHash) {
       // If we're on Contact page, go to main page first
       if (pathname === '/Contact') {

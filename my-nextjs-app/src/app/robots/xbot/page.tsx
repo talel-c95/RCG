@@ -297,7 +297,7 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">13.3" Full HD Touchscreen</h4>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">13.3&quot; Full HD Touchscreen</h4>
                     <p className="text-secondary text-xs sm:text-sm">Clear, user-friendly interface for seamless operation</p>
                   </div>
                 </div>

@@ -235,7 +235,7 @@ export default function ContactPage() {
                              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                  <div className="space-y-1">
                    <p className="text-xs sm:text-sm text-muted-foreground">
-                     Fill out the form below and we'll get back to you ASAP to schedule your meeting.
+                                              Fill out the form below and we&apos;ll get back to you ASAP to schedule your meeting.
                    </p>
                  </div>
                                  {/* Name and Email */}
@@ -417,7 +417,7 @@ export default function ContactPage() {
                  Meeting Request Sent!
                </h3>
                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                 Thank you for your interest! We've received your meeting request and will send you an email confirmation ASAP to confirm the meeting details.
+                                      Thank you for your interest! We&apos;ve received your meeting request and will send you an email confirmation ASAP to confirm the meeting details.
                </p>
              </div>
              
