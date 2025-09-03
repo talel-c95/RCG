@@ -1,8 +1,10 @@
 "use client";
 
 import Navbar from "@/components/Layout/Navbar";
+import Footer from "@/components/Layout/Footer";
 import { useI18n } from "@/contexts/I18nContext";
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 
 // Custom hook for line-by-line animation
 function useLineAnimation(delay: number = 0) {
@@ -218,42 +220,45 @@ export default function RobotXbotPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 sm:py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Column - Robot Image Card */}
-            <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden">
-                <img
+            <div className="flex justify-center order-2 lg:order-1">
+              <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+                <Image
                   src="/images/xbot1.avif"
                   alt="Robot Xbot"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={90}
                 />
               </div>
             </div>
 
             {/* Right Column - Text Content */}
-            <div>
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
+            <div className="order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Oxbot
               </div>
               <AnimatedText 
                 text="Revolutionizing Industrial Delivery"
                 delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
                 tag="h2"
               />
               <AnimatedText 
                 text="Your Smart Logistics Assistant"
                 delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
+                className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
                 tag="h3"
               />
               <AnimatedText 
                 text="Oxbot is an advanced Autonomous Mobile Robot (AMR) engineered to streamline industrial material handling. With impressive features like 500kg payload, 40m LiDAR, and RGBD obstacle avoidance, Oxbot ensures smooth, efficient, and safe transport across warehouses and factories."
                 delay={600}
-                className="text-lg text-foreground/80 leading-relaxed"
+                className="text-base sm:text-lg text-foreground/80 leading-relaxed"
                 tag="p"
               />
             </div>
@@ -262,98 +267,101 @@ export default function RobotXbotPage() {
       </section>
 
       {/* Advanced Features Section */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 sm:py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Column - Advanced Features Text */}
-            <div>
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Key Features
               </div>
               <AnimatedText 
                 text="Advanced Features"
                 delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
                 tag="h2"
               />
               <AnimatedText 
                 text="Real Impact"
                 delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
+                className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
                 tag="h3"
               />
               
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13.3" Full HD Touchscreen</h4>
-                    <p className="text-secondary">Clear, user-friendly interface for seamless operation</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">13.3" Full HD Touchscreen</h4>
+                    <p className="text-secondary text-xs sm:text-sm">Clear, user-friendly interface for seamless operation</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">24V40AH Lithium Battery</h4>
-                    <p className="text-secondary">Long life, high safety, zero combustion</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">24V40AH Lithium Battery</h4>
+                    <p className="text-secondary text-xs sm:text-sm">Long life, high safety, zero combustion</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Smart Navigation</h4>
-                    <p className="text-secondary">LiDAR + RGBD camera for 3D obstacle detection</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Smart Navigation</h4>
+                    <p className="text-secondary text-xs sm:text-sm">LiDAR + RGBD camera for 3D obstacle detection</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Modular Design</h4>
-                    <p className="text-secondary">Choose between Standard / Bin / Shelf modes</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Modular Design</h4>
+                    <p className="text-secondary text-xs sm:text-sm">Choose between Standard / Bin / Shelf modes</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Multiple Models</h4>
-                    <p className="text-secondary">F150 (150kg), F300 (300kg), F500 (500kg)</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Multiple Models</h4>
+                    <p className="text-secondary text-xs sm:text-sm">F150 (150kg), F300 (300kg), F500 (500kg)</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Robot Image Card */}
-            <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden">
-                <img
+            <div className="flex justify-center order-1 lg:order-2">
+              <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+                <Image
                   src="/images/xbot1.avif"
                   alt="Robot Xbot"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={90}
                 />
               </div>
             </div>
@@ -366,29 +374,29 @@ export default function RobotXbotPage() {
       {/* Built to Automate - Smaller section below features */}
       
       {/* Feature Cards Carousel */}
-      <section className="py-20 bg-surface relative">
+      <section className="py-16 sm:py-20 bg-surface relative">
         {/* Header Content - Centered */}
-        <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
             Features
           </div>
           <AnimatedText 
             text="Built to Automate"
             delay={0}
-            className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
             tag="h2"
           />
           <AnimatedText 
             text="Designed to Perform."
             delay={300}
-            className="text-2xl font-semibold text-secondary mb-8"
+            className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
             tag="h3"
           />
           <AnimatedText 
             text="We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector."
             delay={600}
-            className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed px-4"
             tag="p"
           />
         </div>
@@ -399,34 +407,37 @@ export default function RobotXbotPage() {
           <div className="flex animate-scroll w-max">
               {/* First Set of Cards */}
               {features.map((feature, index) => (
-                <div key={feature.id} className="flex-shrink-0 mx-3">
-                  <div className="group relative w-80 h-96 bg-surface rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl border border-border">
+                <div key={feature.id} className="flex-shrink-0 mx-2 sm:mx-3">
+                  <div className="group relative w-72 h-80 sm:w-80 sm:h-96 bg-surface rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl border border-border">
                     {/* Image Container */}
                     <div className="w-full h-full relative overflow-hidden">
-                      <img 
+                      <Image 
                         src={feature.image} 
                         alt={feature.alt}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index < 3}
+                        quality={85}
                       />
                       
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
                         {/* Content Container */}
-                        <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
                           {/* Feature Tag */}
-                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
-                            <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
+                          <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-3 sm:mb-4">
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-foreground rounded-full"></span>
                             Feature {index + 1}
                           </div>
                           
                           {/* Title */}
-                          <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
+                          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">
                             {feature.title}
                           </h3>
                           
                           {/* Description */}
-                          <p className="text-white/90 text-sm leading-relaxed max-w-xs">
+                          <p className="text-white/90 text-xs sm:text-sm leading-relaxed max-w-xs">
                             {feature.description}
                           </p>
                         </div>
@@ -441,27 +452,30 @@ export default function RobotXbotPage() {
               
               {/* Second Set for Seamless Loop */}
               {features.map((feature, index) => (
-                <div key={`duplicate-${feature.id}`} className="flex-shrink-0 mx-3">
-                  <div className="group relative w-80 h-96 bg-surface rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl border border-border">
+                <div key={`duplicate-${feature.id}`} className="flex-shrink-0 mx-2 sm:mx-3">
+                  <div className="group relative w-72 h-80 sm:w-80 sm:h-96 bg-surface rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl border border-border">
                     <div className="w-full h-full relative overflow-hidden">
-                      <img 
+                      <Image 
                         src={feature.image} 
                         alt={feature.alt}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={false}
+                        quality={85}
                       />
                       
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                        <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
-                            <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                          <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-3 sm:mb-4">
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-foreground rounded-full"></span>
                             Feature {index + 1}
                           </div>
-                          <h3 className="text-white/90 text-sm leading-relaxed max-w-xs">
+                          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">
                             {feature.title}
                           </h3>
-                          <p className="text-white/90 text-sm leading-relaxed max-w-xs">
+                          <p className="text-white/90 text-xs sm:text-sm leading-relaxed max-w-xs">
                             {feature.description}
                           </p>
                         </div>
@@ -476,12 +490,12 @@ export default function RobotXbotPage() {
           </div>
         </section>
         {/* Real-World Impact Header Section */}
-      <section className="py-24 bg-gradient-to-br from-background via-surface to-background/50">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-background via-surface to-background/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Enhanced Service Cases Badge */}
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
               Service Cases
             </div>
             
@@ -489,7 +503,7 @@ export default function RobotXbotPage() {
             <AnimatedText 
               text="Real-World Impact Across Industries"
               delay={0}
-              className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 sm:mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
               tag="h2"
             />
             
@@ -497,7 +511,7 @@ export default function RobotXbotPage() {
             <AnimatedText 
               text="Trusted by Leaders in Logistics and Manufacturing"
               delay={400}
-              className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary mb-8 sm:mb-10 leading-relaxed max-w-4xl mx-auto px-4"
               tag="h3"
             />
             
@@ -506,17 +520,20 @@ export default function RobotXbotPage() {
               <AnimatedText 
                 text="From smart warehouses to automated production lines, Oxbot delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task."
                 delay={800}
-                className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10"
+                className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10 px-4"
                 tag="p"
               />
               
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary/20 rounded-full blur-sm"></div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-primary/10 rounded-full blur-md"></div>
+              <div className="absolute -top-4 -left-4 w-6 h-6 sm:w-8 sm:h-8 bg-primary/20 rounded-full blur-sm"></div>
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 sm:w-12 sm:h-12 bg-primary/10 rounded-full blur-md"></div>
             </div>
           </div>
         </div>
       </section>
-      </div>
-    );
-  }
+      
+      {/* Footer Section */}
+      <Footer />
+    </div>
+  );
+}
