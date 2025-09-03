@@ -103,22 +103,22 @@ export default function IndustriesSection() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
       {/* Industries Section */}
-      <div className="container mx-auto px-4 pt-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
         {/* Header */}
-        <div className="text-center mb-20">
-          <div className="inline-block mb-6">
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto"></div>
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="inline-block mb-4 sm:mb-6">
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto"></div>
           </div>
-          <h3 className="text-lg font-semibold text-primary mb-4 uppercase tracking-wider">
+          <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4 uppercase tracking-wider">
             Industries We Serve
           </h3>
-          <h1 className="text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
             Engine automation
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">
+          <p className="text-lg sm:text-xl text-muted-foreground mb-4 sm:mb-6">
             Through the key sectors
           </p>
-          <p className="text-lg text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed px-4">
             We associate ourselves with companies in critical industries to implement tailor-made automation solutions that transform operations, stimulate productivity and feed sustainable growth.
           </p>
         </div>
@@ -127,7 +127,7 @@ export default function IndustriesSection() {
       {/* Automated Scrolling Cards Container - Full Width */}
       <div 
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-hidden scroll-smooth px-6"
+        className="flex gap-4 sm:gap-6 overflow-x-hidden scroll-smooth px-4 sm:px-6"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {/* First set of cards */}

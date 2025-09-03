@@ -15,15 +15,21 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Ensure hydration is complete
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   const navigationItems = [
-    { name: t("home"), href: "#home", isHash: true },
-    { name: t("industry"), href: "#Industries", isHash: true },
-    { name: t("services"), href: "#Services", isHash: true },
-    { name: t("about"), href: "#About", isHash: true },
-    { name: t("robots"), href: "#Robots", isHash: true },
-    { name: t("faq"), href: "#FQA", isHash: true },
-    { name: t("contact"), href: "/Contact", isHash: false },
+    { name: t("home") || "Home", href: "#home", isHash: true },
+    { name: t("industry") || "Industry", href: "#Industries", isHash: true },
+    { name: t("services") || "Services", href: "#Services", isHash: true },
+    { name: t("about") || "About", href: "#About", isHash: true },
+    { name: t("robots") || "Robots", href: "#Robots", isHash: true },
+    { name: t("faq") || "FAQ", href: "#FQA", isHash: true },
+    { name: t("contact") || "Contact", href: "/Contact", isHash: false },
   ];
 
   // Handle scroll effect
@@ -36,6 +42,23 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Handle click outside to close mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMenuOpen) {
+        const target = event.target as Element;
+        if (!target.closest('nav')) {
+          setIsMenuOpen(false);
+        }
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -75,64 +98,107 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 bg-transparent transition-opacity duration-700 ease-in-out`}>
-      <div className={`transition-all duration-700 ease-in-out ${isScrolled ? 'max-w-7xl mx-auto px-6' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}`}>
-        <div className={`relative flex justify-center items-center transition-all duration-700 ease-in-out
-                        ${isScrolled ? 'h-16' : 'h-16'}`}>
-                     {/* Logo */}
-           <div className={`absolute left-6 top-1/2 -translate-y-1/2 flex items-center space-x-3 transition-opacity duration-700 ease-in-out ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-             <Link href="/" className="flex items-center space-x-3">
-               <div className={`relative transition-all duration-500
-                              ${isScrolled ? 'w-20 h-20' : 'w-22 h-22'}`}>
-                 <Image
-                   src={logoPng}
-                   alt="Rakhami Group Logo"
-                   fill
-                   priority
-                   className="object-contain"
-                 />
-               </div>
-             </Link>
-           </div>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border/20' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative flex justify-between items-center h-16">
+          {/* Logo - Always visible on mobile */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
+              <div className="relative w-12 h-12 sm:w-16 sm:h-16">
+                <Image
+                  src={logoPng}
+                  alt="Rakhami Group Logo"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </div>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className={`hidden md:flex items-center space-x-8 transition-all ${isScrolled ? 'duration-700 ease-in-out' : 'duration-0'}
+          <div className={`hidden md:flex items-center space-x-8 transition-all duration-300
                           ${isScrolled ? 'bg-black/55 dark:bg-gray-900/80 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 shadow-md' : ''}`}>
-            {navigationItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => handleNavigation(item)}
-                className={`group relative font-medium transition-all duration-500 ease-in-out cursor-pointer
-                         ${isScrolled 
-                           ? 'text-white/90 hover:text-white text-base' 
-                           : 'text-white/90 hover:text-white text-base'
-                         }
-                         after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
-                         after:bg-gradient-to-r after:from-primary after:to-highlight
-                         after:transition-all after:duration-500 hover:after:w-full`}
-              >
-                {item.name}
-              </button>
+            {isHydrated && navigationItems.map((item) => (
+              item.href === "#Robots" ? (
+                <div key={item.name} className="relative group">
+                  <button
+                    onClick={() => handleNavigation(item)}
+                    className={`group inline-flex items-center gap-1.5 relative font-medium transition-all duration-500 ease-in-out cursor-pointer
+                             ${isScrolled 
+                               ? 'text-white/90 hover:text-white text-base' 
+                               : 'text-white/90 hover:text-white text-base'
+                             }
+                             after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
+                             after:bg-gradient-to-r after:from-primary after:to-highlight
+                             after:transition-all after:duration-500 group-hover:after:w-full`}
+                  >
+                    {item.name}
+                    <svg className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 transition" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  {/* Invisible bridge to prevent dropdown from disappearing */}
+                  <div className="absolute left-0 right-0 h-3 bg-transparent"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                    <div className={`w-56 rounded-xl text-white shadow-2xl backdrop-blur-sm border border-white/10 p-2
+                                    ${isScrolled ? 'bg-black/70 dark:bg-gray-900/90' : 'bg-black/55 dark:bg-gray-900/80'}`}>
+                      <Link
+                        href="/robots/xbot"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Xbot
+                      </Link>
+                      <Link
+                        href="/robots/amy"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Amy
+                      </Link>
+                      <Link
+                        href="/robots/panda"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Panda
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item)}
+                  className={`group relative font-medium transition-all duration-500 ease-in-out cursor-pointer
+                           ${isScrolled 
+                             ? 'text-white/90 hover:text-white text-base' 
+                             : 'text-white/90 hover:text-white text-base'
+                           }
+                           after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
+                           after:bg-gradient-to-r after:from-primary after:to-highlight
+                           after:transition-all after:duration-500 hover:after:w-full`}
+                >
+                  {item.name}
+                </button>
+              )
             ))}
           </div>
 
           {/* Right side buttons */}
-          <div className={`absolute right-6 top-1/2 -translate-y-1/2 flex items-center space-x-3 transition-opacity duration-700 ease-in-out ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-            <LanguageButton />
-            <ThemeToggleButton />
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            {/* Desktop theme and language buttons */}
+            <div className="hidden sm:flex items-center space-x-2 sm:space-x-3">
+              <LanguageButton />
+              <ThemeToggleButton />
+            </div>
             
-            {/* Mobile menu button */}
+            {/* Mobile menu button - Always visible on mobile */}
             <button
               onClick={toggleMenu}
-              className={`md:hidden rounded-lg border text-foreground transition-all duration-500 ease-in-out
-                       ${isScrolled 
-                         ? 'p-1.5 bg-surface/60 border-border/40 hover:bg-surface/80 hover:border-highlight/40' 
-                         : 'p-2 bg-surface/50 border-border/50 hover:bg-surface hover:border-highlight/30'
-                       }`}
+              className="md:hidden p-2 rounded-lg border border-border/50 bg-surface/50 hover:bg-surface hover:border-highlight/30 text-foreground transition-all duration-300"
               aria-label="Toggle menu"
             >
               <svg
-                className={`transition-all duration-500 ease-in-out ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`}
+                className="w-5 h-5 transition-all duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -158,22 +224,65 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className={`md:hidden border-t bg-background/95 backdrop-blur-xl transition-all duration-300
-                          ${isScrolled ? 'border-border/30' : 'border-border/20'}`}>
-            <div className="px-2 pt-2 pb-3 space-y-1">
+        {isMenuOpen && isHydrated && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-t border-border/20 shadow-lg">
+            <div className="px-4 py-4 space-y-2">
+              {/* Mobile theme and language buttons */}
+              <div className="flex items-center justify-center space-x-4 px-3 py-3 border-b border-border/20 mb-3">
+                <LanguageButton />
+                <ThemeToggleButton />
+              </div>
+              
               {navigationItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    handleNavigation(item);
-                    setIsMenuOpen(false);
-                  }}
-                  className="block px-3 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50
-                           font-medium transition-all duration-300 w-full text-left"
-                >
-                  {item.name}
-                </button>
+                <div key={item.name}>
+                  {item.href === "#Robots" ? (
+                    <div className="space-y-1">
+                      <button
+                        onClick={() => {
+                          handleNavigation(item);
+                          setIsMenuOpen(false);
+                        }}
+                        className="block w-full px-3 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50 font-medium transition-all duration-300 text-left"
+                      >
+                        {item.name}
+                      </button>
+                      {/* Mobile robot submenu */}
+                      <div className="ml-4 space-y-1">
+                        <Link
+                          href="/robots/xbot"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
+                        >
+                          Robot Xbot
+                        </Link>
+                        <Link
+                          href="/robots/amy"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
+                        >
+                          Robot Amy
+                        </Link>
+                        <Link
+                          href="/robots/panda"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
+                        >
+                          Robot Panda
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        handleNavigation(item);
+                        setIsMenuOpen(false);
+                      }}
+                      className="block w-full px-3 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50 font-medium transition-all duration-300 text-left"
+                    >
+                      {item.name}
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
           </div>

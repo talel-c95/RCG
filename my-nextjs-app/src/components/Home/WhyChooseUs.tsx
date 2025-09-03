@@ -74,20 +74,20 @@ const WhyChooseUs = () => {
   const visiblePhrases = getVisiblePhrases()
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-background via-background to-surface/20 py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative w-full bg-gradient-to-br from-background via-background to-surface/20 py-16 sm:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground mb-6">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-4 sm:mb-6">
             Why Choose Us?
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed px-4">
             We provide tailor-made advice and robotics that allow companies to innovate, optimize operations and obtain measurable results.
           </p>
         </div>
 
         {/* Three Cards */}
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16">
           {visiblePhrases.map((phrase, index) => (
             <div
               key={`${phrase.title}-${currentIndex}`}
@@ -100,7 +100,7 @@ const WhyChooseUs = () => {
               }`}
             >
               {/* Icon */}
-              <div className={`w-20 h-20 mx-auto mb-8 rounded-2xl flex items-center justify-center text-3xl transition-all duration-1500 ease-out ${
+              <div className={`w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl transition-all duration-1500 ease-out ${
                 phrase.position === 'current' 
                   ? 'bg-primary text-primary-foreground shadow-xl scale-110' 
                   : 'bg-muted text-muted-foreground shadow-md scale-100'
@@ -109,14 +109,14 @@ const WhyChooseUs = () => {
               </div>
               
               {/* Title */}
-              <h3 className={`text-2xl font-semibold mb-6 transition-all duration-1500 ease-out ${
+              <h3 className={`text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 transition-all duration-1500 ease-out ${
                 phrase.position === 'current' ? 'text-foreground' : 'text-foreground/70'
               }`}>
                 {phrase.title}
               </h3>
               
               {/* Description */}
-              <p className={`text-base leading-relaxed transition-all duration-1500 ease-out ${
+              <p className={`text-sm sm:text-base leading-relaxed transition-all duration-1500 ease-out px-2 ${
                 phrase.position === 'current' ? 'text-foreground/80' : 'text-foreground/60'
               }`}>
                 {phrase.description}
@@ -126,13 +126,13 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Navigation Dots */}
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center space-x-3 sm:space-x-4">
           {phrases.map((_, index) => (
             <button
               key={index}
               onClick={() => handleDotClick(index)}
               disabled={isTransitioning}
-              className={`w-4 h-4 rounded-full transition-all duration-700 ease-out disabled:opacity-50 ${
+              className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-700 ease-out disabled:opacity-50 ${
                 index === currentIndex 
                   ? "bg-primary scale-110 shadow-lg" 
                   : "bg-muted hover:bg-muted-foreground hover:scale-105"
