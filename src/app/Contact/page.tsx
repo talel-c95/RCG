@@ -48,24 +48,8 @@ export default function ContactPage() {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
-    // Get time slots from API
-    const fetchTimeSlots = async () => {
-      try {
-        const response = await fetch('/api/contact');
-        if (response.ok) {
-          const data = await response.json();
-          setTimeSlots(data.timeSlots);
-        } else {
-          // Fallback to local generation if API fails
-          setTimeSlots(generateTimeSlots());
-        }
-      } catch {
-        // Fallback to local generation if API fails
-        setTimeSlots(generateTimeSlots());
-      }
-    };
-
-    fetchTimeSlots();
+    // Generate time slots locally
+    setTimeSlots(generateTimeSlots());
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

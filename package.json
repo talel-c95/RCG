@@ -1,20 +1,36 @@
 {
-  "name": "rcg-project",
-  "version": "1.0.0",
+  "name": "my-nextjs-app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "cd my-nextjs-app && npm run build",
-    "dev": "cd my-nextjs-app && npm run dev",
-    "start": "cd my-nextjs-app && npm run start",
-    "install-deps": "cd my-nextjs-app && npm install",
-    "vercel-build": "cd my-nextjs-app && npm run build"
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.2.0",
+    "@types/nodemailer": "^7.0.1",
+    "i18next": "^25.4.2",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.542.0",
     "next": "15.5.0",
+    "next-i18next": "^15.4.2",
+    "nodemailer": "^7.0.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-i18next": "^15.7.2",
+    "react-leaflet": "^5.0.0"
   },
-  "workspaces": [
-    "my-nextjs-app"
-  ]
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
 }
