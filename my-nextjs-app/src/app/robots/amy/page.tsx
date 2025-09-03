@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { useI18n } from "@/contexts/I18nContext";
-import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 // Custom hook for line-by-line animation
@@ -53,12 +53,12 @@ const AnimatedText = ({
   text, 
   delay = 0, 
   className = "", 
-  tag: Tag = "p" as keyof JSX.IntrinsicElements 
+  tag: Tag = "p" as keyof React.JSX.IntrinsicElements 
 }: { 
   text: string; 
   delay?: number; 
   className?: string; 
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: keyof React.JSX.IntrinsicElements;
 }) => {
   const { visibleLines, startAnimation } = useAnimatedText();
   const [isVisible, setIsVisible] = useState(false);
@@ -88,7 +88,7 @@ const AnimatedText = ({
   const lines = text.split('\n');
   
   return (
-    <Tag ref={elementRef} className={className}>
+    <Tag className={className}>
       {lines.map((line, index) => (
         <span
           key={index}
@@ -271,7 +271,7 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13.3" Full HD Touchscreen</h4>
+                    <h4 className="font-semibold text-foreground mb-1">13.3&quot; Full HD Touchscreen</h4>
                     <p className="text-secondary">Clear, user-friendly interface for seamless operation</p>
                   </div>
                 </div>
