@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import logoPng from "@/images/craiyon_162456_image.png";
 import { useI18n } from "@/contexts/I18nContext";
 import ThemeToggleButton from "@/components/Buttons/ThemeButton";
@@ -10,17 +11,19 @@ import LanguageButton from "@/components/Buttons/LanguageButton";
 
 const Navbar = () => {
   const { t } = useI18n();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navigationItems = [
-    { name: t("home"), href: "#home" },
-    { name: t("industry"), href: "#industries" },
-    { name: t("services"), href: "#services" },
-    { name: t("about"), href: "#about" },
-    { name: t("robots"), href: "#robots" },
-    { name: t("faq"), href: "#faq" },
-    { name: t("contact"), href: "#contact" },
+    { name: t("home"), href: "#home", isHash: true },
+    { name: t("industry"), href: "#Industries", isHash: true },
+    { name: t("services"), href: "#Services", isHash: true },
+    { name: t("about"), href: "#About", isHash: true },
+    { name: t("robots"), href: "#Robots", isHash: true },
+    { name: t("faq"), href: "#FQA", isHash: true },
+    { name: t("contact"), href: "/Contact", isHash: false },
   ];
 
   // Handle scroll effect
@@ -38,10 +41,36 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (item: any) => {
+    if (item.isHash) {
+      // If we're on Contact page, go to main page first
+      if (pathname === '/Contact') {
+        router.push('/');
+        // Wait longer for page to load then scroll to section
+        setTimeout(() => {
+          const element = document.querySelector(item.href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // If element not found, try again after a bit more time
+            setTimeout(() => {
+              const element = document.querySelector(item.href);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 200);
+          }
+        }, 300);
+      } else {
+        // We're on main page, just scroll to section
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else {
+      // Regular page navigation
+      router.push(item.href);
     }
   };
 
@@ -183,10 +212,10 @@ const Navbar = () => {
                 <button
                   key={item.name}
                   onClick={() => {
-                    scrollToSection(item.href.replace('#', ''));
+                    handleNavigation(item);
                     setIsMenuOpen(false);
                   }}
-                  className="block px-3 py-2 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50
+                  className="block px-3 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50
                            font-medium transition-all duration-300 w-full text-left"
                 >
                   {item.name}
