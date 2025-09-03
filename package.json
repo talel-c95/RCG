@@ -1,0 +1,14 @@
+{
+  "name": "rcg-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd my-nextjs-app && npm run build",
+    "dev": "cd my-nextjs-app && npm run dev",
+    "start": "cd my-nextjs-app && npm run start",
+    "install-deps": "cd my-nextjs-app && npm install"
+  },
+  "workspaces": [
+    "my-nextjs-app"
+  ]
+}
