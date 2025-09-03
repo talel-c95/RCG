@@ -70,20 +70,66 @@ const Navbar = () => {
           <div className={`hidden md:flex items-center space-x-8 transition-all ${isScrolled ? 'duration-700 ease-in-out' : 'duration-0'}
                           ${isScrolled ? 'bg-black/55 dark:bg-gray-900/80 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 shadow-md' : ''}`}>
             {navigationItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href.replace('#', ''))}
-                className={`group relative font-medium transition-all duration-500 ease-in-out cursor-pointer
-                         ${isScrolled 
-                           ? 'text-white/90 hover:text-white text-base' 
-                           : 'text-white/90 hover:text-white text-base'
-                         }
-                         after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
-                         after:bg-gradient-to-r after:from-primary after:to-highlight
-                         after:transition-all after:duration-500 hover:after:w-full`}
-              >
-                {item.name}
-              </button>
+              item.href === "#robots" ? (
+                <div key={item.name} className="relative group">
+                  <button
+                    onClick={() => scrollToSection(item.href.replace('#', ''))}
+                    className={`group inline-flex items-center gap-1.5 relative font-medium transition-all duration-500 ease-in-out cursor-pointer
+                             ${isScrolled 
+                               ? 'text-white/90 hover:text-white text-base' 
+                               : 'text-white/90 hover:text-white text-base'
+                             }
+                             after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
+                             after:bg-gradient-to-r after:from-primary after:to-highlight
+                             after:transition-all after:duration-500 group-hover:after:w-full`}
+                  >
+                    {item.name}
+                    <svg className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 transition" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  {/* Invisible bridge to prevent dropdown from disappearing */}
+                  <div className="absolute left-0 right-0 h-3 bg-transparent"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                    <div className={`w-56 rounded-xl text-white shadow-2xl backdrop-blur-sm border border-white/10 p-2
+                                    ${isScrolled ? 'bg-black/70 dark:bg-gray-900/90' : 'bg-black/55 dark:bg-gray-900/80'}`}>
+                      <Link
+                        href="/robots/xbot"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Xbot
+                      </Link>
+                      <Link
+                        href="/robots/amy"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Amy
+                      </Link>
+                      <Link
+                        href="/robots/panda"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        Robot Panda
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href.replace('#', ''))}
+                  className={`group relative font-medium transition-all duration-500 ease-in-out cursor-pointer
+                           ${isScrolled 
+                             ? 'text-white/90 hover:text-white text-base' 
+                             : 'text-white/90 hover:text-white text-base'
+                           }
+                           after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
+                           after:bg-gradient-to-r after:from-primary after:to-highlight
+                           after:transition-all after:duration-500 hover:after:w-full`}
+                >
+                  {item.name}
+                </button>
+              )
             ))}
           </div>
 
