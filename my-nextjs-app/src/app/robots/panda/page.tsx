@@ -3,13 +3,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-import { useI18n } from "@/contexts/I18nContext";
+
 import Image from "next/image";
 
 // Custom hook for line-by-line animation
 const useAnimatedText = () => {
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [, setCurrentLineIndex] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const startAnimation = useCallback((totalLines: number, delay: number = 100) => {
@@ -107,8 +107,7 @@ const AnimatedText = ({
 };
 
 export default function RobotPandaPage() {
-  const { t } = useI18n();
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [, setCurrentSlide] = useState(0);
   const features = [
     {
       id: 1,
@@ -159,9 +158,7 @@ export default function RobotPandaPage() {
       alt: "High-Security Lithium-Ion Battery",
     },
   ];
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
+
   
   useEffect(() => {
     const interval = setInterval(() => {

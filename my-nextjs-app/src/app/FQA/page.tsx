@@ -22,7 +22,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {items.map((item, index) => (
+      {items.map((item) => (
         <div
           key={item.id}
           className={`border-2 rounded-xl overflow-hidden bg-surface shadow-lg transition-all duration-300 hover:shadow-xl ${

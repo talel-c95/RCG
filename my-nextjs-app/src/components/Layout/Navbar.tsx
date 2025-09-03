@@ -98,11 +98,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border/20' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex justify-between items-center h-16">
-          {/* Logo - Always visible on mobile */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className={`relative flex items-center h-16 transition-all duration-300 ${
+          isScrolled ? 'md:justify-center' : 'justify-between'
+        }`}>
+          {/* Logo - Hidden when scrolled on desktop, always visible on mobile */}
+          <div className={`flex items-center space-x-2 sm:space-x-3 transition-all duration-300 ${
+            isScrolled ? 'md:opacity-0 md:pointer-events-none md:w-0 md:overflow-hidden' : 'opacity-100'
+          }`}>
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
               <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                 <Image
@@ -118,7 +122,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className={`hidden md:flex items-center space-x-8 transition-all duration-300
-                          ${isScrolled ? 'bg-black/55 dark:bg-gray-900/80 backdrop-blur-sm border border-white/10 rounded-full px-6 py-2 shadow-md' : ''}`}>
+                          ${isScrolled ? 'bg-black/70 dark:bg-gray-900/90 backdrop-blur-md border border-white/20 rounded-full px-8 py-3 shadow-lg' : ''}`}>
             {isHydrated && navigationItems.map((item) => (
               item.href === "#Robots" ? (
                 <div key={item.name} className="relative group">
@@ -141,8 +145,8 @@ const Navbar = () => {
                   {/* Invisible bridge to prevent dropdown from disappearing */}
                   <div className="absolute left-0 right-0 h-3 bg-transparent"></div>
                   <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
-                    <div className={`w-56 rounded-xl text-white shadow-2xl backdrop-blur-sm border border-white/10 p-2
-                                    ${isScrolled ? 'bg-black/70 dark:bg-gray-900/90' : 'bg-black/55 dark:bg-gray-900/80'}`}>
+                    <div className={`w-56 rounded-xl text-white shadow-2xl backdrop-blur-md border border-white/20 p-2
+                                    ${isScrolled ? 'bg-black/80 dark:bg-gray-900/95' : 'bg-black/55 dark:bg-gray-900/80'}`}>
                       <Link
                         href="/robots/xbot"
                         className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
@@ -183,8 +187,10 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right side buttons */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* Right side buttons - Hidden when scrolled on desktop, always visible on mobile */}
+          <div className={`flex items-center space-x-2 sm:space-x-3 transition-all duration-300 ${
+            isScrolled ? 'md:opacity-0 md:pointer-events-none md:w-0 md:overflow-hidden' : 'opacity-100'
+          }`}>
             {/* Desktop theme and language buttons */}
             <div className="hidden sm:flex items-center space-x-2 sm:space-x-3">
               <LanguageButton />

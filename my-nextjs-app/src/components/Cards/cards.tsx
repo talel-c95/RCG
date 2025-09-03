@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface RetailCardProps {
   title: string;
@@ -22,10 +23,11 @@ const RetailCard: React.FC<RetailCardProps> = ({
     >
       <div className="relative h-full w-full">
         {/* Background Image */}
-        <img 
+        <Image 
           src={image}
           alt={title}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
         
         {/* Overlay with Label and Description */}

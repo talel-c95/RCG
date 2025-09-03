@@ -2,15 +2,15 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useTheme } from '@/contexts/ThemeContext';
 import { useI18n } from '@/contexts/I18nContext';
+
+
+
 import { MapPin, Mail, Phone } from 'lucide-react';
 import logoPng from "@/images/craiyon_162456_image.png";
 import CompanyMap from './CompanyMap';
 
 const Footer: React.FC = () => {
-  const { theme } = useTheme();
   const { t } = useI18n();
 
   // Company locations data

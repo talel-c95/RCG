@@ -126,10 +126,10 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
     if (!mounted) return key; // Return key during SSR
     
     const keys = key.split(".");
-    let value: any = translations[language];
+    let value: unknown = translations[language];
     
     for (const k of keys) {
-      value = value?.[k];
+      value = (value as Record<string, unknown>)?.[k];
     }
     
     if (!value) {
@@ -141,10 +141,10 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
     if (params) {
       return Object.entries(params).reduce((str, [key, val]) => {
         return str.replace(new RegExp(`{{${key}}}`, "g"), String(val));
-      }, value);
+      }, String(value));
     }
 
-    return value;
+    return String(value);
   };
 
   const value: I18nContextType = {

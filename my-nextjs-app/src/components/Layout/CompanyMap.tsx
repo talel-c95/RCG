@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { useI18n } from "@/contexts/I18nContext";
+
 
 interface Location {
   id: string;
@@ -16,8 +16,7 @@ interface CompanyMapProps {
   height?: string;
 }
 
-const CompanyMap: React.FC<CompanyMapProps> = ({ locations, height = "300px" }) => {
-  const { t } = useI18n();
+const CompanyMap: React.FC<CompanyMapProps> = ({ locations }) => {
   
   // Use the first location for the map
   const mainLocation = locations[0];

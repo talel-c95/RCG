@@ -88,7 +88,7 @@ const WhyChooseUs = () => {
 
         {/* Three Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12 sm:mb-16">
-          {visiblePhrases.map((phrase, index) => (
+          {visiblePhrases.map((phrase) => (
             <div
               key={`${phrase.title}-${currentIndex}`}
               className={`text-center transition-all duration-1500 ease-out ${

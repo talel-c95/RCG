@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-import { useI18n } from "@/contexts/I18nContext";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
@@ -45,38 +45,7 @@ function useLineAnimation(delay: number = 0) {
   return { ref, animatedLines, isVisible };
 }
 
-// Component for animated text block with line-by-line animation
-function AnimatedTextBlock({ 
-  lines, 
-  delay = 0, 
-  className = "",
-  lineClassName = ""
-}: {
-  lines: string[];
-  delay?: number;
-  className?: string;
-  lineClassName?: string;
-}) {
-  const { ref, animatedLines } = useLineAnimation(delay);
 
-  return (
-    <div ref={ref} className={className}>
-      {lines.map((line, index) => (
-        <div
-          key={index}
-          data-line={index}
-          className={`transform transition-all duration-700 ease-out ${
-            animatedLines.includes(index)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
-          } ${lineClassName}`}
-        >
-          {line}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 // Component for single animated text element
 function AnimatedText({ 
@@ -90,7 +59,7 @@ function AnimatedText({
   className?: string;
   tag?: string;
 }) {
-  const { ref, animatedLines } = useLineAnimation(delay);
+  const { ref } = useLineAnimation(delay);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -108,7 +77,7 @@ function AnimatedText({
     }
 
     return () => observer.disconnect();
-  }, [isVisible]);
+  }, [isVisible, ref]);
 
   const renderElement = () => {
     const elementClass = `transform transition-all duration-700 ease-out ${
@@ -133,8 +102,7 @@ function AnimatedText({
 }
 
 export default function RobotXbotPage() {
-  const { t } = useI18n();
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [, setCurrentSlide] = useState(0);
   const features = [
     {
       id: 1,
@@ -185,9 +153,7 @@ export default function RobotXbotPage() {
       alt: "High-Security Lithium-Ion Battery",
     },
   ];
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
+
   
   useEffect(() => {
     const interval = setInterval(() => {

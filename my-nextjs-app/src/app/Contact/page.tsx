@@ -59,7 +59,7 @@ export default function ContactPage() {
           // Fallback to local generation if API fails
           setTimeSlots(generateTimeSlots());
         }
-      } catch (error) {
+      } catch {
         // Fallback to local generation if API fails
         setTimeSlots(generateTimeSlots());
       }
@@ -110,7 +110,7 @@ export default function ContactPage() {
           text: data.error || 'Failed to send meeting request. Please try again.'
         });
       }
-    } catch (error) {
+    } catch {
       setMessage({
         type: 'error',
         text: 'Network error. Please check your connection and try again.'
