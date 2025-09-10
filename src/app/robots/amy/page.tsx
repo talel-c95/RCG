@@ -1,115 +1,24 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 
 import Image from "next/image";
 
-// Custom hook for line-by-line animation
-const useAnimatedText = () => {
-  const [visibleLines, setVisibleLines] = useState<number[]>([]);
-  const [, setCurrentLineIndex] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startAnimation = useCallback((totalLines: number, delay: number = 100) => {
-    setVisibleLines([]);
-    setCurrentLineIndex(0);
-    
-    intervalRef.current = setInterval(() => {
-      setCurrentLineIndex(prev => {
-        if (prev < totalLines) {
-          setVisibleLines(current => [...current, prev]);
-          return prev + 1;
-        } else {
-          if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-          }
-          return prev;
-        }
-      });
-    }, delay);
-  }, []);
-
-  const stopAnimation = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
-  return { visibleLines, startAnimation, stopAnimation };
-};
-
-// AnimatedText component
-const AnimatedText = ({ 
-  text, 
-  delay = 0, 
-  className = "", 
-  tag: Tag = "p"
-}: { 
-  text: string; 
-  delay?: number; 
-  className?: string; 
-  tag?: string;
-}) => {
-  const { visibleLines, startAnimation } = useAnimatedText();
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-          setTimeout(() => {
-            const lines = text.split('\n').length;
-            startAnimation(lines, 150);
-          }, delay);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [text, delay, startAnimation, isVisible]);
-
-  const lines = text.split('\n');
-  
-  const TagComponent = Tag as any;
-  
-  return (
-    <TagComponent ref={elementRef} className={className}>
-      {lines.map((line, index) => (
-        <span
-          key={index}
-          className={`inline-block transition-all duration-500 ${
-            visibleLines.includes(index)
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-4'
-          }`}
-        >
-          {line}
-          {index < lines.length - 1 && <br />}
-        </span>
-      ))}
-    </TagComponent>
-  );
-};
 
 export default function RobotAmyPage() {
   const [, setCurrentSlide] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
   const features = [
     {
       id: 1,
@@ -176,6 +85,7 @@ export default function RobotAmyPage() {
       <section className="relative w-full h-screen overflow-hidden">
         <div className="absolute inset-0">
           <video
+            ref={videoRef}
             src="/images/amy.mp4"
             autoPlay
             muted
@@ -188,6 +98,22 @@ export default function RobotAmyPage() {
               objectPosition: 'center'
             }}
           />
+          {/* Music Control Button */}
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-4 right-4 z-50 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 backdrop-blur-sm border-2 border-white/20 shadow-lg"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? (
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+              </svg>
+            )}
+          </button>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-gray-900/40" />
         </div>
       </section>
@@ -255,7 +181,7 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13" HD Touch Screen</h4>
+                    <h4 className="font-semibold text-foreground mb-1">13&quot; HD Touch Screen</h4>
                     <p className="text-secondary">Intuitive user interface for orders and interaction</p>
                   </div>
                 </div>
