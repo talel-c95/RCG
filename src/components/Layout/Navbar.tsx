@@ -9,7 +9,11 @@ import { useI18n } from "@/contexts/I18nContext";
 import ThemeToggleButton from "@/components/Buttons/ThemeButton";
 import LanguageButton from "@/components/Buttons/LanguageButton";
 
-const Navbar = () => {
+interface NavbarProps {
+  onNavigate?: (href: string) => void;
+}
+
+const Navbar = ({ onNavigate }: NavbarProps) => {
   const { t } = useI18n();
   const router = useRouter();
   const pathname = usePathname();
@@ -25,8 +29,8 @@ const Navbar = () => {
   const navigationItems = [
     { name: t("home") || "Home", href: "#home", isHash: true },
     { name: t("industry") || "Industry", href: "#Industries", isHash: true },
-    { name: t("services") || "Services", href: "#Services", isHash: true },
     { name: t("about") || "About", href: "#About", isHash: true },
+    { name: t("services") || "Services", href: "#Services", isHash: true },
     { name: t("robots") || "Robots", href: "#Robots", isHash: true },
     { name: t("faq") || "FAQ", href: "#FQA", isHash: true },
     { name: t("contact") || "Contact", href: "/Contact", isHash: false },
@@ -64,36 +68,40 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Optimized navigation handler
   const handleNavigation = (item: { name: string; href: string; isHash: boolean }) => {
-    if (item.isHash) {
-      // If we're on Contact page, go to main page first
-      if (pathname === '/Contact') {
-        router.push('/');
-        // Wait longer for page to load then scroll to section
-        setTimeout(() => {
-          const element = document.querySelector(item.href);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            // If element not found, try again after a bit more time
-            setTimeout(() => {
-              const element = document.querySelector(item.href);
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }, 200);
-          }
-        }, 300);
-      } else {
-        // We're on main page, just scroll to section
-        const element = document.querySelector(item.href);
+    // If onNavigate prop is provided, use it (for robot/contact pages)
+    if (onNavigate) {
+      onNavigate(item.href);
+      return;
+    }
+
+    // For hash links, navigate to main page first if not already there
+    if (item.isHash && pathname !== '/') {
+      router.push('/');
+      setTimeout(() => scrollToSection(item.href), 300);
+    } else if (item.isHash) {
+      // Already on main page, just scroll
+      scrollToSection(item.href);
+    } else {
+      // Direct page navigation
+      router.push(item.href);
+    }
+  };
+
+  // Helper function to scroll to section with retry logic
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Retry after a short delay if element not found
+      setTimeout(() => {
+        const element = document.querySelector(href);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }
-    } else {
-      // Regular page navigation
-      router.push(item.href);
+      }, 200);
     }
   };
 

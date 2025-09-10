@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-
 import Image from "next/image";
+import { useNavigation } from "@/hooks/useNavigation";
 
 
 
@@ -12,6 +12,7 @@ export default function RobotAmyPage() {
   const [, setCurrentSlide] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { handleNavigation } = useNavigation();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -78,11 +79,12 @@ export default function RobotAmyPage() {
     return () => clearInterval(interval);
   }, [features.length]);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
-      <Navbar />
+    <div className="min-h-screen">
+      {/* Navbar */}
+      <Navbar onNavigate={handleNavigation} />
       
-      {/* Hero Section with Video Background - No Text */}
-      <section className="relative w-full h-screen overflow-hidden">
+      {/* Hero Section with Video Background */}
+      <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-primary/80 to-primary-hover/80 overflow-hidden">
         <div className="absolute inset-0">
           <video
             ref={videoRef}
@@ -114,9 +116,18 @@ export default function RobotAmyPage() {
               </svg>
             )}
           </button>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-gray-900/40" />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
         </div>
-      </section>
+        <div className="relative z-10 flex items-center h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-primary-foreground max-w-2xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Amy Robot</h1>
+            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80">
+              The Future of Smart Hospitality - Your Interactive Delivery Companion
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Features Section */}
       <section className="py-20 bg-surface">
@@ -418,7 +429,10 @@ export default function RobotAmyPage() {
         </div>
       </section>
       
-      {/* Footer Section */}
+      {/* Spacing between content and footer */}
+      <div className="mt-12 sm:mt-16 lg:mt-20 mb-6 sm:mb-10"></div>
+
+      {/* Footer */}
       <Footer />
     </div>
   );
