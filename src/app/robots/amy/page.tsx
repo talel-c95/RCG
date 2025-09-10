@@ -53,12 +53,12 @@ const AnimatedText = ({
   text, 
   delay = 0, 
   className = "", 
-  tag: Tag = "p" as keyof React.JSX.IntrinsicElements 
+  tag: Tag = "p"
 }: { 
   text: string; 
   delay?: number; 
   className?: string; 
-  tag?: keyof React.JSX.IntrinsicElements;
+  tag?: string;
 }) => {
   const { visibleLines, startAnimation } = useAnimatedText();
   const [isVisible, setIsVisible] = useState(false);
@@ -87,8 +87,10 @@ const AnimatedText = ({
 
   const lines = text.split('\n');
   
+  const TagComponent = Tag as any;
+  
   return (
-    <Tag className={className}>
+    <TagComponent ref={elementRef} className={className}>
       {lines.map((line, index) => (
         <span
           key={index}
@@ -102,7 +104,7 @@ const AnimatedText = ({
           {index < lines.length - 1 && <br />}
         </span>
       ))}
-    </Tag>
+    </TagComponent>
   );
 };
 
@@ -111,51 +113,51 @@ export default function RobotAmyPage() {
   const features = [
     {
       id: 1,
-      title: "500KG Max Load Capacity",
+      title: "Welcome and Attract Guests",
       description:
-        "The body is made from 80% high-strength aluminum alloy, ensuring excellent stability. Designed for repetitive and cyclical transportation of heavy goods, with broad application scenarios to enhance efficiency and reliability in material flow.",
-      image: "/images/xbot2.webp",
-      alt: "500KG Load Capacity",
+        "The humanoid Amy robot supports facial recognition sensing and plays welcome and promotional messages.",
+      image: "/images/amy7.png",
+      alt: "Welcome and Attract Guests",
     },
     {
       id: 2,
-      title: "40m LiDAR",
+      title: "Intelligent Voice Interaction",
       description:
-        "Equipped with advanced LiDAR technology for real-time navigation and safety. Suitable for factories covering tens of thousands of square meters and adaptable to various operational environments.",
-      image: "/images/xbot5.webp",
-      alt: "40m LiDAR Technology",
+        "Built in self-developed vertical large model 'Smartstar' AI voice interaction, natural semantic understanding, personification and efficient communication.",
+      image: "/images/amy6.jpg",
+      alt: "Intelligent Voice Interaction",
     },
     {
       id: 3,
-      title: "RGBD High-Definition Camera",
+      title: "Double Layer Tray",
       description:
-        "Binocular cameras + LiDAR, three-dimensional intelligent obstacle avoidance, real-time perception of the dynamic environment.",
-      image: "/images/xbot6.webp",
-      alt: "RGBD High-Definition Camera",
+        "The double-layer tray can carry about 5 kilograms, and the tray size meets various usage ranges in the catering industry.",
+      image: "/images/amy2.webp",
+      alt: "Double Layer Tray",
     },
     {
       id: 4,
-      title: "13.3-Inch Touchscreen",
+      title: "Introduction to Dishes",
       description:
-        "The large screen displays information query, map, etc. more clearly.",
-      image: "/images/xbot4.webp",
-      alt: "13.3-Inch Touchscreen",
+        "Voice recommendation of featured dishes, food introduction, today's specials, set meals, etc., to provide customers with more dish references.",
+      image: "/images/amy9.avif",
+      alt: "Introduction to Dishes",
     },
     {
       id: 5,
-      title: "Thresholds and Grooves Crossed Freely",
+      title: "Efficient Food Delivery",
       description:
-        "Equipped with 8-inch main drive wheels and 5-inch large double-row universal wheels. Delivers robust power to overcome 30mm thresholds and 40mm grooves with ease, enabling precise material transfer between production lines and meeting autonomous elevator riding requirements.",
-      image: "/images/xbot7.webp",  
-      alt: "Thresholds and Grooves Crossed Freely",
+        "High-precision navigation indoors, stable and free movement; shock absorption system effectively enhances driving stability and prevents food from spilling.",
+      image: "/images/amy8.jpg",  
+      alt: "Efficient Food Delivery",
     },
     {
       id: 6,
-      title: "High-Security Lithium-Ion Battery",
+      title: "Autonomous Obstacle Avoidance",
       description:
-        "Battery capacity 24V40AH, high temperature resistant, non-explosive, non-combustible, providing safe and reliable use, long battery life.",
-      image: "/images/xbot3.webp",
-      alt: "High-Security Lithium-Ion Battery",
+        "Combining LiDAR and depth camera, it has the ability of stereoscopic perception and obstacle avoidance, accurately identifying obstacles such as table legs and table tops. Perceive real-time personnel walking around, choose the optimal route to advance, and reach the target point.",
+      image: "/images/amy4.webp",
+      alt: "Autonomous Obstacle Avoidance",
     },
   ];
 
@@ -174,7 +176,7 @@ export default function RobotAmyPage() {
       <section className="relative w-full h-screen overflow-hidden">
         <div className="absolute inset-0">
           <video
-            src="/images/AMY.mp4"
+            src="/images/amy.mp4"
             autoPlay
             muted
             loop
@@ -198,7 +200,7 @@ export default function RobotAmyPage() {
             <div className="flex justify-center">
               <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
-                  src="/images/xbot1.avif"
+                  src="/images/amy1.webp"
                   alt="Robot Amy"
                   fill
                   className="object-cover"
@@ -214,24 +216,15 @@ export default function RobotAmyPage() {
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Amy
               </div>
-              <AnimatedText 
-                text="Revolutionizing Industrial Delivery"
-                delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-                tag="h2"
-              />
-              <AnimatedText 
-                text="Your Smart Logistics Assistant"
-                delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
-                tag="h3"
-              />
-              <AnimatedText 
-                text="Amy is an advanced Autonomous Mobile Robot (AMR) engineered to streamline industrial material handling. With impressive features like 500kg payload, 40m LiDAR, and RGBD obstacle avoidance, Amy ensures smooth, efficient, and safe transport across warehouses and factories."
-                delay={600}
-                className="text-lg text-foreground/80 leading-relaxed"
-                tag="p"
-              />
+              <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+                The Future of Smart Hospitality
+              </h2>
+              <h3 className="text-2xl font-semibold text-secondary mb-8">
+                Your Interactive Delivery Companion
+              </h3>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                Amy is a service delivery robot designed for restaurants, hotels, and commercial spaces. With voice interaction, obstacle avoidance, and high-precision LiDAR navigation, Amy delivers items smoothly and interacts naturally with guests.
+              </p>
             </div>
           </div>
         </div>
@@ -247,18 +240,12 @@ export default function RobotAmyPage() {
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Key Features
               </div>
-              <AnimatedText 
-                text="Advanced Features"
-                delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-                tag="h2"
-              />
-              <AnimatedText 
-                text="Real Impact"
-                delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
-                tag="h3"
-              />
+              <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+                Advanced Features
+              </h2>
+              <h3 className="text-2xl font-semibold text-secondary mb-8">
+                Real Impact
+              </h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -268,8 +255,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13.3&quot; Full HD Touchscreen</h4>
-                    <p className="text-secondary">Clear, user-friendly interface for seamless operation</p>
+                    <h4 className="font-semibold text-foreground mb-1">13" HD Touch Screen</h4>
+                    <p className="text-secondary">Intuitive user interface for orders and interaction</p>
                   </div>
                 </div>
 
@@ -280,8 +267,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">24V40AH Lithium Battery</h4>
-                    <p className="text-secondary">Long life, high safety, zero combustion</p>
+                    <h4 className="font-semibold text-foreground mb-1">15Ah Battery Capacity</h4>
+                    <p className="text-secondary">8+ hours of operation with 2–3h fast charging</p>
                   </div>
                 </div>
 
@@ -292,8 +279,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Smart Navigation</h4>
-                    <p className="text-secondary">LiDAR + RGBD camera for 3D obstacle detection</p>
+                    <h4 className="font-semibold text-foreground mb-1">0–1.5 m/s Walking Speed</h4>
+                    <p className="text-secondary">Smooth and stable indoor mobility</p>
                   </div>
                 </div>
 
@@ -304,8 +291,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Modular Design</h4>
-                    <p className="text-secondary">Choose between Standard / Bin / Shelf modes</p>
+                    <h4 className="font-semibold text-foreground mb-1">±50mm Positioning Accuracy</h4>
+                    <p className="text-secondary">Precise navigation in dynamic spaces</p>
                   </div>
                 </div>
 
@@ -316,8 +303,32 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Multiple Models</h4>
-                    <p className="text-secondary">F150 (150kg), F300 (300kg), F500 (500kg)</p>
+                    <h4 className="font-semibold text-foreground mb-1">5kg Load Capacity</h4>
+                    <p className="text-secondary">Dual tray design ideal for hospitality and service</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">40m LiDAR + Ultrasonic Sensors</h4>
+                    <p className="text-secondary">Advanced obstacle avoidance</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">Android OS + Voice AI (Smartstar)</h4>
+                    <p className="text-secondary">Smart communication and dish guidance</p>
                   </div>
                 </div>
               </div>
@@ -325,12 +336,12 @@ export default function RobotAmyPage() {
 
             {/* Right Column - Robot Image Card */}
             <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+              <div className="w-full h-96 rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
-                  src="/images/xbot1.avif"
+                  src="/images/amy31.jpg"
                   alt="Robot Amy"
                   fill
-                  className="object-cover"
+                  className="object-contain object-bottom"
                   priority
                   quality={90}
                 />
@@ -348,24 +359,15 @@ export default function RobotAmyPage() {
             <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
             Features
           </div>
-          <AnimatedText 
-            text="Built to Automate"
-            delay={0}
-            className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-            tag="h2"
-          />
-          <AnimatedText 
-            text="Designed to Perform."
-            delay={300}
-            className="text-2xl font-semibold text-secondary mb-8"
-            tag="h3"
-          />
-          <AnimatedText 
-            text="We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector."
-            delay={600}
-            className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed"
-            tag="p"
-          />
+          <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+            Built to Automate
+          </h2>
+          <h3 className="text-2xl font-semibold text-secondary mb-8">
+            Designed to Perform.
+          </h3>
+          <p className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
+            We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector.
+          </p>
         </div>
         
         {/* Infinite Rolling Cards - Optimized */}
@@ -467,29 +469,20 @@ export default function RobotAmyPage() {
             </div>
             
             {/* Main Title with Enhanced Typography */}
-            <AnimatedText 
-              text="Real-World Impact Across Industries"
-              delay={0}
-              className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-              tag="h2"
-            />
+            <h2 className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+              Real-World Impact Across Industries
+            </h2>
             
             {/* Subtitle with Professional Styling */}
-            <AnimatedText 
-              text="Trusted by Leaders in Logistics and Manufacturing"
-              delay={400}
-              className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto"
-              tag="h3"
-            />
+            <h3 className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto">
+              Trusted by Leaders in Logistics and Manufacturing
+            </h3>
             
             {/* Enhanced Description */}
             <div className="relative">
-              <AnimatedText 
-                text="From smart warehouses to automated production lines, Amy delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task."
-                delay={800}
-                className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10"
-                tag="p"
-              />
+              <p className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10">
+                From smart warehouses to automated production lines, Amy delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task.
+              </p>
               
               {/* Decorative Elements */}
               <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary/20 rounded-full blur-sm"></div>

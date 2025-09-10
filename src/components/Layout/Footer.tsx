@@ -34,7 +34,6 @@ const Footer: React.FC = () => {
             {/* Company Logo and Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-3 sm:space-x-4">
-                <a href="https://rkhamiconsultinggroup.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white/30 rounded-2xl flex items-center justify-center p-2 sm:p-3 bg-white/10 backdrop-blur-sm">
                     <Image
                       src={logoPng}
@@ -44,7 +43,6 @@ const Footer: React.FC = () => {
                       className="rounded-lg"
                     />
                   </div>
-                </a>
                 <div className="flex flex-col">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{t("rcg")}</span>
                   <span className="text-sm sm:text-base font-medium text-white/80">{t("rkhamiConsultingGroup")}</span>
@@ -114,9 +112,7 @@ const Footer: React.FC = () => {
                 </a>
               </div>
               
-              <a href="https://rkhamiconsultinggroup.com" className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium break-all">
-                rkhamiconsultinggroup.com
-              </a>
+              
             </div>
           </div>
 

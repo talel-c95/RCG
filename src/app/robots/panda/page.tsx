@@ -53,12 +53,12 @@ const AnimatedText = ({
   text, 
   delay = 0, 
   className = "", 
-  tag: Tag = "p" as keyof React.JSX.IntrinsicElements 
+  tag: Tag = "p"
 }: { 
   text: string; 
   delay?: number; 
   className?: string; 
-  tag?: keyof React.JSX.IntrinsicElements;
+  tag?: string;
 }) => {
   const { visibleLines, startAnimation } = useAnimatedText();
   const [isVisible, setIsVisible] = useState(false);
@@ -87,8 +87,10 @@ const AnimatedText = ({
 
   const lines = text.split('\n');
   
+  const TagComponent = Tag as any;
+  
   return (
-    <Tag className={className}>
+    <TagComponent ref={elementRef} className={className}>
       {lines.map((line, index) => (
         <span
           key={index}
@@ -102,7 +104,7 @@ const AnimatedText = ({
           {index < lines.length - 1 && <br />}
         </span>
       ))}
-    </Tag>
+    </TagComponent>
   );
 };
 
@@ -111,51 +113,51 @@ export default function RobotPandaPage() {
   const features = [
     {
       id: 1,
-      title: "500KG Max Load Capacity",
+      title: "Multi Layer Tray",
       description:
-        "The body is made from 80% high-strength aluminum alloy, ensuring excellent stability. Designed for repetitive and cyclical transportation of heavy goods, with broad application scenarios to enhance efficiency and reliability in material flow.",
-      image: "/images/xbot2.webp",
-      alt: "500KG Load Capacity",
+        "The 3-layer tray can carry about 40 kilograms, and the tray size meets various usage ranges in the catering industry. One delivery can reach multiple dining tables.",
+      image: "/images/panda1.webp",
+      alt: "Multi Layer Tray",
     },
     {
       id: 2,
-      title: "40m LiDAR",
+      title: "Narrow Passage",
       description:
-        "Equipped with advanced LiDAR technology for real-time navigation and safety. Suitable for factories covering tens of thousands of square meters and adaptable to various operational environments.",
-      image: "/images/xbot5.webp",
-      alt: "40m LiDAR Technology",
+        "Centimeter level precise positioning, easy access to narrow roads, more suitable for restaurant environments.",
+      image: "/images/panda2.webp",
+      alt: "Narrow Passage",
     },
     {
       id: 3,
-      title: "RGBD High-Definition Camera",
+      title: "Efficient and Smooth Delivery of Meals",
       description:
-        "Binocular cameras + LiDAR, three-dimensional intelligent obstacle avoidance, real-time perception of the dynamic environment.",
-      image: "/images/xbot6.webp",
-      alt: "RGBD High-Definition Camera",
+        "Realize high-precision indoor navigation and stable free movement; The shock absorption system effectively enhances the stability of the driving process and prevents food from spilling out.",
+      image: "/images/panda3.webp",
+      alt: "Efficient and Smooth Delivery of Meals",
     },
     {
       id: 4,
-      title: "13.3-Inch Touchscreen",
+      title: "Autonomous Obstacle Avoidance",
       description:
-        "The large screen displays information query, map, etc. more clearly.",
-      image: "/images/xbot4.webp",
-      alt: "13.3-Inch Touchscreen",
+        "Combining LiDAR and depth camera, it has the ability of stereoscopic perception and obstacle avoidance, accurately identifying obstacles such as table legs and table tops. Perceive real-time personnel walking around, choose the optimal route to advance, and reach the target point.",
+      image: "/images/panda10.webp",
+      alt: "Autonomous Obstacle Avoidance",
     },
     {
       id: 5,
-      title: "Thresholds and Grooves Crossed Freely",
+      title: "Safe Voltage",
       description:
-        "Equipped with 8-inch main drive wheels and 5-inch large double-row universal wheels. Delivers robust power to overcome 30mm thresholds and 40mm grooves with ease, enabling precise material transfer between production lines and meeting autonomous elevator riding requirements.",
-      image: "/images/xbot7.webp",  
-      alt: "Thresholds and Grooves Crossed Freely",
+        "24V safe voltage <36V safe voltage for human body, More secure",
+      image: "/images/panda5.webp",  
+      alt: "Safe Voltage",
     },
     {
       id: 6,
-      title: "High-Security Lithium-Ion Battery",
+      title: "Intelligent Voice Interaction",
       description:
-        "Battery capacity 24V40AH, high temperature resistant, non-explosive, non-combustible, providing safe and reliable use, long battery life.",
-      image: "/images/xbot3.webp",
-      alt: "High-Security Lithium-Ion Battery",
+        "Built in self-developed vertical large model 'Smartstar' AI voice interaction, natural semantic understanding, personification and efficient communication",
+      image: "/images/panda6.webp",
+      alt: "Intelligent Voice Interaction",
     },
   ];
 
@@ -174,7 +176,7 @@ export default function RobotPandaPage() {
       <section className="relative w-full h-screen overflow-hidden">
         <div className="absolute inset-0">
           <video
-            src="/images/PANDA.mp4"
+            src="/images/panda.mp4"
             autoPlay
             muted
             loop
@@ -196,12 +198,12 @@ export default function RobotPandaPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column - Robot Image Card */}
             <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+              <div className="w-full h-[500px] rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
-                  src="/images/xbot1.avif"
+                  src="/images/panda7.webp"
                   alt="Robot Panda"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                   quality={90}
                 />
@@ -214,24 +216,15 @@ export default function RobotPandaPage() {
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Panda
               </div>
-              <AnimatedText 
-                text="Revolutionizing Industrial Delivery"
-                delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-                tag="h2"
-              />
-              <AnimatedText 
-                text="Your Smart Logistics Assistant"
-                delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
-                tag="h3"
-              />
-              <AnimatedText 
-                text="Panda is an advanced Autonomous Mobile Robot (AMR) engineered to streamline industrial material handling. With impressive features like 500kg payload, 40m LiDAR, and RGBD obstacle avoidance, Panda ensures smooth, efficient, and safe transport across warehouses and factories."
-                delay={600}
-                className="text-lg text-foreground/80 leading-relaxed"
-                tag="p"
-              />
+              <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+                The Future of Food Delivery
+              </h2>
+              <h3 className="text-2xl font-semibold text-secondary mb-8">
+                Your Reliable Service Robot
+              </h3>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                Panda is a smart delivery robot designed for restaurants and hospitality environments. With a 3-layer tray, high-speed navigation (up to 2 m/s), and real-time obstacle avoidance, Panda ensures fast, safe, and efficient meal delivery even in narrow spaces.
+              </p>
             </div>
           </div>
         </div>
@@ -247,18 +240,12 @@ export default function RobotPandaPage() {
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
                 Key Features
               </div>
-              <AnimatedText 
-                text="Advanced Features"
-                delay={0}
-                className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-                tag="h2"
-              />
-              <AnimatedText 
-                text="Real Impact"
-                delay={300}
-                className="text-2xl font-semibold text-secondary mb-8"
-                tag="h3"
-              />
+              <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+                Advanced Features
+              </h2>
+              <h3 className="text-2xl font-semibold text-secondary mb-8">
+                Real Impact
+              </h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -268,8 +255,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13.3&quot; Full HD Touchscreen</h4>
-                    <p className="text-secondary">Clear, user-friendly interface for seamless operation</p>
+                    <h4 className="font-semibold text-foreground mb-1">10.1" HD Touch Screen</h4>
+                    <p className="text-secondary">Intuitive display for menus, orders, and interaction</p>
                   </div>
                 </div>
 
@@ -280,8 +267,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">24V40AH Lithium Battery</h4>
-                    <p className="text-secondary">Long life, high safety, zero combustion</p>
+                    <h4 className="font-semibold text-foreground mb-1">15Ah Battery Capacity</h4>
+                    <p className="text-secondary">Ensures ≥8 hours of uninterrupted service</p>
                   </div>
                 </div>
 
@@ -292,8 +279,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Smart Navigation</h4>
-                    <p className="text-secondary">LiDAR + RGBD camera for 3D obstacle detection</p>
+                    <h4 className="font-semibold text-foreground mb-1">0–2 m/s Walking Speed</h4>
+                    <p className="text-secondary">Fast, stable navigation with smooth movement</p>
                   </div>
                 </div>
 
@@ -304,8 +291,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Modular Design</h4>
-                    <p className="text-secondary">Choose between Standard / Bin / Shelf modes</p>
+                    <h4 className="font-semibold text-foreground mb-1">±50mm Positioning Accuracy</h4>
+                    <p className="text-secondary">High precision in tight and crowded spaces</p>
                   </div>
                 </div>
 
@@ -316,8 +303,44 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Multiple Models</h4>
-                    <p className="text-secondary">F150 (150kg), F300 (300kg), F500 (500kg)</p>
+                    <h4 className="font-semibold text-foreground mb-1">30kg Load Capacity</h4>
+                    <p className="text-secondary">Multi-layer tray system ideal for restaurants</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">40m LiDAR + Depth Cameras</h4>
+                    <p className="text-secondary">Real-time dynamic obstacle avoidance</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">Independent Suspension Chassis</h4>
+                    <p className="text-secondary">Enhanced balance and shock absorption</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-1">Smartstar™ Voice AI + Android OS</h4>
+                    <p className="text-secondary">Natural voice interaction and dish recommendations</p>
                   </div>
                 </div>
               </div>
@@ -325,12 +348,12 @@ export default function RobotPandaPage() {
 
             {/* Right Column - Robot Image Card */}
             <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+              <div className="w-full h-[500px] rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
-                  src="/images/xbot1.avif"
+                  src="/images/panda9.webp"
                   alt="Robot Panda"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                   quality={90}
                 />
@@ -348,24 +371,15 @@ export default function RobotPandaPage() {
             <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
             Features
           </div>
-          <AnimatedText 
-            text="Built to Automate"
-            delay={0}
-            className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-            tag="h2"
-          />
-          <AnimatedText 
-            text="Designed to Perform."
-            delay={300}
-            className="text-2xl font-semibold text-secondary mb-8"
-            tag="h3"
-          />
-          <AnimatedText 
-            text="We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector."
-            delay={600}
-            className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed"
-            tag="p"
-          />
+          <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+            Built to Automate
+          </h2>
+          <h3 className="text-2xl font-semibold text-secondary mb-8">
+            Designed to Perform.
+          </h3>
+          <p className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
+            We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector.
+          </p>
         </div>
         
         {/* Infinite Rolling Cards - Optimized */}
@@ -467,29 +481,20 @@ export default function RobotPandaPage() {
             </div>
             
             {/* Main Title with Enhanced Typography */}
-            <AnimatedText 
-              text="Real-World Impact Across Industries"
-              delay={0}
-              className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
-              tag="h2"
-            />
+            <h2 className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+              Real-World Impact Across Industries
+            </h2>
             
             {/* Subtitle with Professional Styling */}
-            <AnimatedText 
-              text="Trusted by Leaders in Logistics and Manufacturing"
-              delay={400}
-              className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto"
-              tag="h3"
-            />
+            <h3 className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto">
+              Trusted by Leaders in Logistics and Manufacturing
+            </h3>
             
             {/* Enhanced Description */}
             <div className="relative">
-              <AnimatedText 
-                text="From smart warehouses to automated production lines, Panda delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task."
-                delay={800}
-                className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10"
-                tag="p"
-              />
+              <p className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10">
+                From smart warehouses to automated production lines, Panda delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task.
+              </p>
               
               {/* Decorative Elements */}
               <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary/20 rounded-full blur-sm"></div>
