@@ -78,14 +78,13 @@ export default function RobotAmyPage() {
     }, 3000);
     return () => clearInterval(interval);
   }, [features.length]);
-  return (
-    <div className="min-h-screen">
-      {/* Navbar */}
-      <Navbar onNavigate={handleNavigation} />
-      
-      {/* Hero Section with Video Background */}
-      <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-primary/80 to-primary-hover/80 overflow-hidden">
-        <div className="absolute inset-0">
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
+        {/* Navbar */}
+        <Navbar onNavigate={handleNavigation} />
+        
+        {/* Hero Section with Video Background */}
+        <div className="relative h-screen w-full overflow-hidden">
           <video
             ref={videoRef}
             src="/images/amy.mp4"
@@ -116,18 +115,7 @@ export default function RobotAmyPage() {
               </svg>
             )}
           </button>
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
         </div>
-        <div className="relative z-10 flex items-center h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-primary-foreground max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Amy Robot</h1>
-            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80">
-              The Future of Smart Hospitality - Your Interactive Delivery Companion
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Features Section */}
       <section className="py-20 bg-surface">
