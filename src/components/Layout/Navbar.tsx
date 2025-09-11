@@ -31,6 +31,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
     { name: t("industry") || "Industry", href: "#Industries", isHash: true },
     { name: t("about") || "About", href: "#About", isHash: true },
     { name: t("services") || "Services", href: "#Services", isHash: true },
+    { name: "E-menu", href: "/qr-menu/emenu", isHash: false },
     { name: t("robots") || "Robots", href: "#Robots", isHash: true },
     { name: t("faq") || "FAQ", href: "#FQA", isHash: true },
     { name: t("contact") || "Contact", href: "/Contact", isHash: false },
