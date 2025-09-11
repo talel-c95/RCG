@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-
 import Image from "next/image";
+import { useNavigation } from "@/hooks/useNavigation";
 
 
 
@@ -12,6 +12,7 @@ export default function RobotPandaPage() {
   const [, setCurrentSlide] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { handleNavigation } = useNavigation();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -79,7 +80,7 @@ export default function RobotPandaPage() {
   }, [features.length]);
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
-      <Navbar />
+      <Navbar onNavigate={handleNavigation} />
       
       {/* Hero Section with Video Background - No Text */}
       <section className="relative w-full h-screen overflow-hidden">

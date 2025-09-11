@@ -7,6 +7,7 @@ import telephoneLaptopImage from '@/images/businessman-talking-phone.jpg';
 import { useI18n } from '@/contexts/I18nContext';
 import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
+import { useNavigation } from '@/hooks/useNavigation';
 
 interface ContactFormData {
   name: string;
@@ -41,6 +42,7 @@ export default function ContactPage() {
     industry: '',
     description: ''
   });
+  const { handleNavigation } = useNavigation();
 
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,7 +113,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <Navbar />
+      <Navbar onNavigate={handleNavigation} />
       
       {/* Hero Section */}
       <div className="relative h-64 sm:h-80 lg:h-96 bg-gradient-to-r from-primary/80 to-primary-hover/80 overflow-hidden">
