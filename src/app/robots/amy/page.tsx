@@ -80,7 +80,6 @@ export default function RobotAmyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
       <Navbar />
-      
       {/* Hero Section with Video Background - No Text */}
       <section className="relative w-full h-screen overflow-hidden">
         <div className="absolute inset-0">
