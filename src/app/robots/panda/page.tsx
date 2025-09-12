@@ -358,8 +358,8 @@ export default function RobotPandaPage() {
                 </div>
               ))}
               
-              {/* Second Set for Seamless Loop - Optimized */}
-              {features.slice(0, 3).map((feature, index) => (
+              {/* Second Set for Seamless Loop - Full duplicate to match xbot */}
+              {features.map((feature, index) => (
                 <div key={`duplicate-${feature.id}`} className="flex-shrink-0 mx-3">
                   <div className="group relative w-80 h-96 bg-surface rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 border border-border">
                     <div className="w-full h-full relative overflow-hidden">
