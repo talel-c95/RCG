@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import { useI18n } from '@/contexts/I18nContext';
 import RetailCard from "@/components/Cards/cards";
 // Import images from src/images folder
 import foodImg from "@/images/food.jpg";
@@ -10,47 +11,48 @@ import manufacturingImg from "@/images/3d-rendering-biorobots-concept.jpg";
 import healthcareImg from "@/images/doctors-wearing-vr-simulation-with-hologram-medical-technology.jpg";
 import retailImg from "@/images/robot-with-several-shipping-boxes.jpg";
 
-// Array of 7 industry objects - customize these with your images, titles, and descriptions
-const industriesData = [
+const buildIndustriesData = (t: (k: string) => string) => ([
   {
     id: 1,
-    title: "Food & Beverage",
-    description: "We optimize food production and packaging lines with robotics that meet hygiene standards, ensuring consistency, safety, and speed.",
+    title: t('industries.cards.foodTitle'),
+    description: t('industries.cards.foodDesc'),
     image: foodImg.src
   },
   {
     id: 2,
-    title: "Agriculture",
-    description: "We implement robotic systems for planting, harvesting, and monitoring crops, increasing efficiency while reducing labor-intensive operations.",
+    title: t('industries.cards.agricultureTitle'),
+    description: t('industries.cards.agricultureDesc'),
     image: agricultureImg.src
   },
   {
     id: 3,
-    title: "Logistics & Warehousing",
-    description: "Our automation solutions improve inventory tracking, material handling, and order fulfillment through smart robotics like AMRs and automated picking systems.",
+    title: t('industries.cards.logisticsTitle'),
+    description: t('industries.cards.logisticsDesc'),
     image: logisticsImg.src
   },
   {
     id: 4,
-    title: "Manufacturing",
-    description: "We streamline production lines with robotic systems, improving precision, reducing downtime, and increasing throughput for factories and industrial plants.",
+    title: t('industries.cards.manufacturingTitle'),
+    description: t('industries.cards.manufacturingDesc'),
     image: manufacturingImg.src
   },
   {
     id: 5,
-    title: "Healthcare",
-    description: "We assist hospitals and clinics in integrating service robots to enhance patient care, automate administrative tasks, and support sterile logistics.",
+    title: t('industries.cards.healthcareTitle'),
+    description: t('industries.cards.healthcareDesc'),
     image: healthcareImg.src
   },
   {
     id: 6,
-    title: "Retail",
-    description: "We help retail businesses adopt automation for inventory management, self-checkout systems, and customer interaction tools, enhancing the shopping experience.",
+    title: t('industries.cards.retailTitle'),
+    description: t('industries.cards.retailDesc'),
     image: retailImg.src
   }
-];
+]);
 
 export default function IndustriesSection() {
+  const { t } = useI18n();
+  const industriesData = buildIndustriesData(t);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,16 +112,16 @@ export default function IndustriesSection() {
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto"></div>
           </div>
           <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4 uppercase tracking-wider">
-            Industries We Serve
+            {t('industries.topLabel')}
           </h3>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
-            Engine automation
+            {t('industries.title')}
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-4 sm:mb-6">
-            Through the key sectors
+            {t('industries.subtitle1')}
           </p>
           <p className="text-base sm:text-lg text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed px-4">
-            We associate ourselves with companies in critical industries to implement tailor-made automation solutions that transform operations, stimulate productivity and feed sustainable growth.
+            {t('industries.subtitle2')}
           </p>
         </div>
       </div>

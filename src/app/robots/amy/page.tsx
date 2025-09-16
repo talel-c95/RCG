@@ -5,6 +5,7 @@ import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import Image from "next/image";
 import { useNavigation } from "@/hooks/useNavigation";
+import { useI18n } from "@/contexts/I18nContext";
 
 
 
@@ -13,6 +14,7 @@ export default function RobotAmyPage() {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { handleNavigation } = useNavigation();
+  const { t } = useI18n();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -23,51 +25,45 @@ export default function RobotAmyPage() {
   const features = [
     {
       id: 1,
-      title: "Welcome and Attract Guests",
-      description:
-        "The humanoid Amy robot supports facial recognition sensing and plays welcome and promotional messages.",
+      title: t('robots.amy.carousel.welcomeTitle'),
+      description: t('robots.amy.carousel.welcomeDesc'),
       image: "/images/amy7.png",
-      alt: "Welcome and Attract Guests",
+      alt: t('robots.amy.carousel.welcomeTitle'),
     },
     {
       id: 2,
-      title: "Intelligent Voice Interaction",
-      description:
-        "Built in self-developed vertical large model 'Smartstar' AI voice interaction, natural semantic understanding, personification and efficient communication.",
+      title: t('robots.amy.carousel.voiceTitle'),
+      description: t('robots.amy.carousel.voiceDesc'),
       image: "/images/amy6.jpg",
-      alt: "Intelligent Voice Interaction",
+      alt: t('robots.amy.carousel.voiceTitle'),
     },
     {
       id: 3,
-      title: "Double Layer Tray",
-      description:
-        "The double-layer tray can carry about 5 kilograms, and the tray size meets various usage ranges in the catering industry.",
+      title: t('robots.amy.carousel.trayTitle'),
+      description: t('robots.amy.carousel.trayDesc'),
       image: "/images/amy2.webp",
-      alt: "Double Layer Tray",
+      alt: t('robots.amy.carousel.trayTitle'),
     },
     {
       id: 4,
-      title: "Introduction to Dishes",
-      description:
-        "Voice recommendation of featured dishes, food introduction, today's specials, set meals, etc., to provide customers with more dish references.",
+      title: t('robots.amy.carousel.dishesTitle'),
+      description: t('robots.amy.carousel.dishesDesc'),
       image: "/images/amy9.avif",
-      alt: "Introduction to Dishes",
+      alt: t('robots.amy.carousel.dishesTitle'),
     },
     {
       id: 5,
-      title: "Efficient Food Delivery",
-      description:
-        "High-precision navigation indoors, stable and free movement; shock absorption system effectively enhances driving stability and prevents food from spilling.",
+      title: t('robots.amy.carousel.deliveryTitle'),
+      description: t('robots.amy.carousel.deliveryDesc'),
       image: "/images/amy8.jpg",  
-      alt: "Efficient Food Delivery",
+      alt: t('robots.amy.carousel.deliveryTitle'),
     },
     {
       id: 6,
-      title: "Autonomous Obstacle Avoidance",
-      description:
-        "Combining LiDAR and depth camera, it has the ability of stereoscopic perception and obstacle avoidance, accurately identifying obstacles such as table legs and table tops. Perceive real-time personnel walking around, choose the optimal route to advance, and reach the target point.",
+      title: t('robots.amy.carousel.obstacleTitle'),
+      description: t('robots.amy.carousel.obstacleDesc'),
       image: "/images/amy4.webp",
-      alt: "Autonomous Obstacle Avoidance",
+      alt: t('robots.amy.carousel.obstacleTitle'),
     },
   ];
 
@@ -103,7 +99,7 @@ export default function RobotAmyPage() {
           <button
             onClick={toggleMute}
             className="absolute bottom-4 right-4 z-50 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 backdrop-blur-sm border-2 border-white/20 shadow-lg"
-            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            aria-label={isMuted ? t("common.unmuteVideo") : t("common.muteVideo")}
           >
             {isMuted ? (
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -126,7 +122,7 @@ export default function RobotAmyPage() {
               <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
                   src="/images/amy1.webp"
-                  alt="Robot Amy"
+                  alt={t("robots.nameAmy")}
                   fill
                   className="object-cover"
                   priority
@@ -139,16 +135,16 @@ export default function RobotAmyPage() {
             <div>
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-                Amy
+                {t("robots.nameAmy")}
               </div>
               <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-                The Future of Smart Hospitality
+                {t("robots.amy.headline")}
               </h2>
               <h3 className="text-2xl font-semibold text-secondary mb-8">
-                Your Interactive Delivery Companion
+                {t("robots.amy.subhead")}
               </h3>
               <p className="text-lg text-foreground/80 leading-relaxed">
-                Amy is a service delivery robot designed for restaurants, hotels, and commercial spaces. With voice interaction, obstacle avoidance, and high-precision LiDAR navigation, Amy delivers items smoothly and interacts naturally with guests.
+                {t("robots.amy.intro")}
               </p>
             </div>
           </div>
@@ -163,13 +159,13 @@ export default function RobotAmyPage() {
             <div>
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-                Key Features
+                {t("robots.keyFeatures")}
               </div>
               <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-                Advanced Features
+                {t("robots.advancedFeatures")}
               </h2>
               <h3 className="text-2xl font-semibold text-secondary mb-8">
-                Real Impact
+                {t("robots.realImpact")}
               </h3>
               
               <div className="space-y-6">
@@ -180,8 +176,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">13&quot; HD Touch Screen</h4>
-                    <p className="text-secondary">Intuitive user interface for orders and interaction</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.screenTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.screenDesc')}</p>
                   </div>
                 </div>
 
@@ -192,8 +188,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">15Ah Battery Capacity</h4>
-                    <p className="text-secondary">8+ hours of operation with 2–3h fast charging</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.batteryTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.batteryDesc')}</p>
                   </div>
                 </div>
 
@@ -204,8 +200,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">0–1.5 m/s Walking Speed</h4>
-                    <p className="text-secondary">Smooth and stable indoor mobility</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.speedTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.speedDesc')}</p>
                   </div>
                 </div>
 
@@ -216,8 +212,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">±50mm Positioning Accuracy</h4>
-                    <p className="text-secondary">Precise navigation in dynamic spaces</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.accuracyTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.accuracyDesc')}</p>
                   </div>
                 </div>
 
@@ -228,8 +224,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">5kg Load Capacity</h4>
-                    <p className="text-secondary">Dual tray design ideal for hospitality and service</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.loadTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.loadDesc')}</p>
                   </div>
                 </div>
 
@@ -240,8 +236,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">40m LiDAR + Ultrasonic Sensors</h4>
-                    <p className="text-secondary">Advanced obstacle avoidance</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.sensorsTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.sensorsDesc')}</p>
                   </div>
                 </div>
 
@@ -252,8 +248,8 @@ export default function RobotAmyPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Android OS + Voice AI (Smartstar)</h4>
-                    <p className="text-secondary">Smart communication and dish guidance</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.amy.bullets.osTitle')}</h4>
+                    <p className="text-secondary">{t('robots.amy.bullets.osDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -264,7 +260,7 @@ export default function RobotAmyPage() {
               <div className="w-full h-96 rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
                   src="/images/amy31.jpg"
-                  alt="Robot Amy"
+                  alt={t("robots.nameAmy")}
                   fill
                   className="object-contain object-bottom"
                   priority
@@ -282,16 +278,16 @@ export default function RobotAmyPage() {
         <div className="max-w-7xl mx-auto px-6 text-center mb-12">
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-            Features
+            {t("robots.featuresBadge")}
           </div>
           <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-            Built to Automate
+            {t("robots.builtToAutomate")}
           </h2>
           <h3 className="text-2xl font-semibold text-secondary mb-8">
-            Designed to Perform.
+            {t("robots.designedToPerform")}
           </h3>
           <p className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
-            We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector.
+            {t("industries.subtitle2")}
           </p>
         </div>
         
@@ -322,7 +318,7 @@ export default function RobotAmyPage() {
                           {/* Feature Tag */}
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
                             <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           
                           {/* Title */}
@@ -364,7 +360,7 @@ export default function RobotAmyPage() {
                         <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300 ease-out">
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
                             <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           <h3 className="text-white/90 text-sm leading-relaxed max-w-xs">
                             {feature.title}
@@ -390,23 +386,23 @@ export default function RobotAmyPage() {
             {/* Enhanced Service Cases Badge */}
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-              Service Cases
+              {t("robots.serviceCases")}
             </div>
             
             {/* Main Title with Enhanced Typography */}
             <h2 className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              Real-World Impact Across Industries
+              {t("robots.realWorldImpact")}
             </h2>
             
             {/* Subtitle with Professional Styling */}
             <h3 className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto">
-              Trusted by Leaders in Logistics and Manufacturing
+              {t("robots.trustedByLeaders")}
             </h3>
             
             {/* Enhanced Description */}
             <div className="relative">
               <p className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10">
-                From smart warehouses to automated production lines, Amy delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task.
+                {t("robots.amy.impactDesc")}
               </p>
               
               {/* Decorative Elements */}

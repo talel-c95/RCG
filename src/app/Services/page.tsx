@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { useI18n } from '@/contexts/I18nContext';
 import { 
   UserCheck, 
   Globe, 
@@ -11,32 +14,32 @@ import Image from 'next/image';
 import rfn from "@/images/craiyon_225631_image.png";
 
 const ServicesPage: React.FC = () => {
-  // Five consulting services
+  const { t } = useI18n();
   const services = [
     {
       icon: UserCheck,
-      title: "Automation Strategy Development",
-      description: "Defining clear objectives and roadmaps for robotics integration."
+      title: t('services.items.automationStrategyTitle'),
+      description: t('services.items.automationStrategyDesc')
     },
     {
       icon: Globe,
-      title: "Change Management",
-      description: "Guiding organizations through the transition and adoption of new technologies."
+      title: t('services.items.changeManagementTitle'),
+      description: t('services.items.changeManagementDesc')
     },
     {
       icon: Bot,
-      title: "Process Optimization",
-      description: "Analyzing existing workflows to identify bottlenecks and areas for improvement through automation."
+      title: t('services.items.processOptimizationTitle'),
+      description: t('services.items.processOptimizationDesc')
     },
     {
       icon: GraduationCap,
-      title: "Training & Skill Development",
-      description: "Equipping your team with the knowledge and skills to work effectively with robotic systems."
+      title: t('services.items.trainingTitle'),
+      description: t('services.items.trainingDesc')
     },
     {
       icon: FileText,
-      title: "Feasibility Studies & ROI Analysis",
-      description: "Evaluating the technical and economic viability of robotics solutions."
+      title: t('services.items.feasibilityTitle'),
+      description: t('services.items.feasibilityDesc')
     }
   ];
 
@@ -49,16 +52,16 @@ const ServicesPage: React.FC = () => {
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto"></div>
           </div>
           <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4 uppercase tracking-wider">
-            Consulting service
+            {t('services.topLabel')}
           </h3>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
-            Strategic consulting services
+            {t('services.title')}
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-4 sm:mb-6">
-            For intelligent automation
+            {t('services.subtitle1')}
           </p>
           <p className="text-base sm:text-lg text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed px-4">
-            We offer expert advice to help you unlock the full potential of automation.
+            {t('services.subtitle2')}
           </p>
         </div>
 

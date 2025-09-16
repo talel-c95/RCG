@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useI18n } from '@/contexts/I18nContext';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface FAQItem {
@@ -67,38 +68,14 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
 };
 
 const FAQPage: React.FC = () => {
-  // Sample FAQ data - you can replace this with your own questions and answers
+  const { t } = useI18n();
   const faqItems: FAQItem[] = [
-    {
-      id: '1',
-      question: 'What industries do you work with?',
-      answer: 'We work across multiple sectors, including manufacturing, healthcare, logistics, agriculture, retail, and more. Our solutions are tailored to each industry’s specific needs.'
-    },
-    {
-      id: '2',
-      question: 'Do I need to have technical knowledge to work with you?',
-      answer: 'Not at all. Our team guides you through every step, from strategy development to implementation, in clear and accessible language.'
-    },
-    {
-      id: '3',
-      question: 'Can your automation solutions be integrated into existing systems?',
-      answer: 'Yes. We specialize in seamless integration of robotics and automation into your current infrastructure to minimize disruption and maximize efficiency.'
-    },
-    {
-      id: '4',
-      question: 'How long does a typical project take?',
-      answer: 'Timelines vary based on the project scope. After an initial consultation, we provide a clear roadmap with milestones and estimated completion dates.'
-    },
-    {
-      id: '5',
-      question: 'Do you offer post-deployment support?',
-      answer: 'Absolutely. We provide ongoing technical support, training, and maintenance to ensure your systems continue to perform optimally.'
-    },
-    {
-      id: '6',
-      question: 'What’s your approach to ROI and cost analysis?',
-      answer: 'We conduct thorough feasibility studies and ROI assessments before implementation to ensure the investment aligns with your goals.'
-    }
+    { id: '1', question: t('faq.items.q1'), answer: t('faq.items.a1') },
+    { id: '2', question: t('faq.items.q2'), answer: t('faq.items.a2') },
+    { id: '3', question: t('faq.items.q3'), answer: t('faq.items.a3') },
+    { id: '4', question: t('faq.items.q4'), answer: t('faq.items.a4') },
+    { id: '5', question: t('faq.items.q5'), answer: t('faq.items.a5') },
+    { id: '6', question: t('faq.items.q6'), answer: t('faq.items.a6') },
   ];
 
   return (
@@ -110,18 +87,16 @@ const FAQPage: React.FC = () => {
             <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto"></div>
           </div>
           <h3 className="text-base sm:text-lg font-semibold text-primary mb-3 sm:mb-4 uppercase tracking-wider">
-            Questions & Answers
+            {t('faq.topLabel')}
           </h3>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
-            Any questions?
+            {t('faq.title')}
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-4 sm:mb-6">
-            We got you
+            {t('faq.subtitle1')}
           </p>
           <p className="text-base sm:text-lg text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed px-4">
-            Find answers to the most commonly asked questions about our services, 
-            implementation process, and how we can help transform your business 
-            through innovative automation solutions.
+            {t('faq.description')}
           </p>
         </div>
 

@@ -5,6 +5,7 @@ import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import Image from "next/image";
 import { useNavigation } from "@/hooks/useNavigation";
+import { useI18n } from "@/contexts/I18nContext";
 
 
 
@@ -13,6 +14,7 @@ export default function RobotPandaPage() {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { handleNavigation } = useNavigation();
+  const { t } = useI18n();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -23,51 +25,45 @@ export default function RobotPandaPage() {
   const features = [
     {
       id: 1,
-      title: "Multi Layer Tray",
-      description:
-        "The 3-layer tray can carry about 40 kilograms, and the tray size meets various usage ranges in the catering industry. One delivery can reach multiple dining tables.",
+      title: t('robots.panda.carousel.trayTitle'),
+      description: t('robots.panda.carousel.trayDesc'),
       image: "/images/panda1.webp",
-      alt: "Multi Layer Tray",
+      alt: t('robots.panda.carousel.trayTitle'),
     },
     {
       id: 2,
-      title: "Narrow Passage",
-      description:
-        "Centimeter level precise positioning, easy access to narrow roads, more suitable for restaurant environments.",
+      title: t('robots.panda.carousel.narrowTitle'),
+      description: t('robots.panda.carousel.narrowDesc'),
       image: "/images/panda2.webp",
-      alt: "Narrow Passage",
+      alt: t('robots.panda.carousel.narrowTitle'),
     },
     {
       id: 3,
-      title: "Efficient and Smooth Delivery of Meals",
-      description:
-        "Realize high-precision indoor navigation and stable free movement; The shock absorption system effectively enhances the stability of the driving process and prevents food from spilling out.",
+      title: t('robots.panda.carousel.smoothTitle'),
+      description: t('robots.panda.carousel.smoothDesc'),
       image: "/images/panda3.webp",
-      alt: "Efficient and Smooth Delivery of Meals",
+      alt: t('robots.panda.carousel.smoothTitle'),
     },
     {
       id: 4,
-      title: "Autonomous Obstacle Avoidance",
-      description:
-        "Combining LiDAR and depth camera, it has the ability of stereoscopic perception and obstacle avoidance, accurately identifying obstacles such as table legs and table tops. Perceive real-time personnel walking around, choose the optimal route to advance, and reach the target point.",
+      title: t('robots.panda.carousel.obstacleTitle'),
+      description: t('robots.panda.carousel.obstacleDesc'),
       image: "/images/panda10.webp",
-      alt: "Autonomous Obstacle Avoidance",
+      alt: t('robots.panda.carousel.obstacleTitle'),
     },
     {
       id: 5,
-      title: "Safe Voltage",
-      description:
-        "24V safe voltage <36V safe voltage for human body, More secure",
+      title: t('robots.panda.carousel.voltageTitle'),
+      description: t('robots.panda.carousel.voltageDesc'),
       image: "/images/panda5.webp",  
-      alt: "Safe Voltage",
+      alt: t('robots.panda.carousel.voltageTitle'),
     },
     {
       id: 6,
-      title: "Intelligent Voice Interaction",
-      description:
-        "Built in self-developed vertical large model 'Smartstar' AI voice interaction, natural semantic understanding, personification and efficient communication",
+      title: t('robots.panda.carousel.voiceTitle'),
+      description: t('robots.panda.carousel.voiceDesc'),
       image: "/images/panda6.webp",
-      alt: "Intelligent Voice Interaction",
+      alt: t('robots.panda.carousel.voiceTitle'),
     },
   ];
 
@@ -103,7 +99,7 @@ export default function RobotPandaPage() {
           <button
             onClick={toggleMute}
             className="absolute bottom-4 right-4 z-50 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 backdrop-blur-sm border-2 border-white/20 shadow-lg"
-            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            aria-label={isMuted ? t("common.unmuteVideo") : t("common.muteVideo")}
           >
             {isMuted ? (
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -128,7 +124,7 @@ export default function RobotPandaPage() {
               <div className="w-full h-[500px] rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
                   src="/images/panda7.webp"
-                  alt="Robot Panda"
+                  alt={t("robots.namePanda")}
                   fill
                   className="object-contain"
                   priority
@@ -141,16 +137,16 @@ export default function RobotPandaPage() {
             <div>
               <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-                Panda
+                {t("robots.namePanda")}
               </div>
               <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-                The Future of Food Delivery
+                {t("robots.panda.headline")}
               </h2>
               <h3 className="text-2xl font-semibold text-secondary mb-8">
-                Your Reliable Service Robot
+                {t("robots.panda.subhead")}
               </h3>
               <p className="text-lg text-foreground/80 leading-relaxed">
-                Panda is a smart delivery robot designed for restaurants and hospitality environments. With a 3-layer tray, high-speed navigation (up to 2 m/s), and real-time obstacle avoidance, Panda ensures fast, safe, and efficient meal delivery even in narrow spaces.
+                {t("robots.panda.intro")}
               </p>
             </div>
           </div>
@@ -182,8 +178,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">10.1&quot; HD Touch Screen</h4>
-                    <p className="text-secondary">Intuitive display for menus, orders, and interaction</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.screenTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.screenDesc')}</p>
                   </div>
                 </div>
 
@@ -194,8 +190,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">15Ah Battery Capacity</h4>
-                    <p className="text-secondary">Ensures ≥8 hours of uninterrupted service</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.batteryTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.batteryDesc')}</p>
                   </div>
                 </div>
 
@@ -206,8 +202,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">0–2 m/s Walking Speed</h4>
-                    <p className="text-secondary">Fast, stable navigation with smooth movement</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.speedTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.speedDesc')}</p>
                   </div>
                 </div>
 
@@ -218,8 +214,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">±50mm Positioning Accuracy</h4>
-                    <p className="text-secondary">High precision in tight and crowded spaces</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.accuracyTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.accuracyDesc')}</p>
                   </div>
                 </div>
 
@@ -230,8 +226,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">30kg Load Capacity</h4>
-                    <p className="text-secondary">Multi-layer tray system ideal for restaurants</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.loadTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.loadDesc')}</p>
                   </div>
                 </div>
 
@@ -242,8 +238,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">40m LiDAR + Depth Cameras</h4>
-                    <p className="text-secondary">Real-time dynamic obstacle avoidance</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.sensorsTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.sensorsDesc')}</p>
                   </div>
                 </div>
 
@@ -254,8 +250,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Independent Suspension Chassis</h4>
-                    <p className="text-secondary">Enhanced balance and shock absorption</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.chassisTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.chassisDesc')}</p>
                   </div>
                 </div>
 
@@ -266,8 +262,8 @@ export default function RobotPandaPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1">Smartstar™ Voice AI + Android OS</h4>
-                    <p className="text-secondary">Natural voice interaction and dish recommendations</p>
+                    <h4 className="font-semibold text-foreground mb-1">{t('robots.panda.bullets.osTitle')}</h4>
+                    <p className="text-secondary">{t('robots.panda.bullets.osDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -278,7 +274,7 @@ export default function RobotPandaPage() {
               <div className="w-full h-[500px] rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
                   src="/images/panda9.webp"
-                  alt="Robot Panda"
+                  alt={t("robots.namePanda")}
                   fill
                   className="object-contain"
                   priority
@@ -296,16 +292,16 @@ export default function RobotPandaPage() {
         <div className="max-w-7xl mx-auto px-6 text-center mb-12">
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-            Features
+            {t("robots.featuresBadge")}
           </div>
           <h2 className="text-5xl font-bold text-foreground mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-            Built to Automate
+            {t("robots.builtToAutomate")}
           </h2>
           <h3 className="text-2xl font-semibold text-secondary mb-8">
-            Designed to Perform.
+            {t("robots.designedToPerform")}
           </h3>
           <p className="text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed">
-            We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector.
+            {t("industries.subtitle2")}
           </p>
         </div>
         
@@ -336,7 +332,7 @@ export default function RobotPandaPage() {
                           {/* Feature Tag */}
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
                             <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           
                           {/* Title */}
@@ -378,7 +374,7 @@ export default function RobotPandaPage() {
                         <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300 ease-out">
                           <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-4">
                             <span className="w-2 h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           <h3 className="text-white/90 text-sm leading-relaxed max-w-xs">
                             {feature.title}
@@ -404,23 +400,23 @@ export default function RobotPandaPage() {
             {/* Enhanced Service Cases Badge */}
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <span className="w-2.5 h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-              Service Cases
+              {t("robots.serviceCases")}
             </div>
             
             {/* Main Title with Enhanced Typography */}
             <h2 className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              Real-World Impact Across Industries
+              {t("robots.realWorldImpact")}
             </h2>
             
             {/* Subtitle with Professional Styling */}
             <h3 className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto">
-              Trusted by Leaders in Logistics and Manufacturing
+              {t("robots.trustedByLeaders")}
             </h3>
             
             {/* Enhanced Description */}
             <div className="relative">
               <p className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10">
-                From smart warehouses to automated production lines, Panda delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task.
+                {t("robots.panda.impactDesc")}
               </p>
               
               {/* Decorative Elements */}

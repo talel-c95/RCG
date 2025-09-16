@@ -27,14 +27,14 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
   }, []);
 
   const navigationItems = [
-    { name: t("home") || "Home", href: "#home", isHash: true },
-    { name: t("industry") || "Industry", href: "#Industries", isHash: true },
-    { name: t("about") || "About", href: "#About", isHash: true },
-    { name: t("services") || "Services", href: "#Services", isHash: true },
-    { name: "E-menu", href: "/qr-menu/emenu", isHash: false },
-    { name: t("robots") || "Robots", href: "#Robots", isHash: true },
-    { name: t("faq") || "FAQ", href: "#FQA", isHash: true },
-    { name: t("contact") || "Contact", href: "/Contact", isHash: false },
+    { name: t("nav.home"), href: "#home", isHash: true },
+    { name: t("nav.industry"), href: "#Industries", isHash: true },
+    { name: t("nav.about"), href: "#About", isHash: true },
+    { name: t("nav.services"), href: "#Services", isHash: true },
+    { name: t("nav.emenu"), href: "/qr-menu/emenu", isHash: false },
+    { name: t("nav.robots"), href: "#Robots", isHash: true },
+    { name: t("nav.faq"), href: "#FQA", isHash: true },
+    { name: t("nav.contact"), href: "/Contact", isHash: false },
   ];
 
   // Handle scroll effect
@@ -160,19 +160,19 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                         href="/robots/xbot"
                         className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
                       >
-                        Robot Xbot
+                        {t("nav.robotXbot")}
                       </Link>
                       <Link
                         href="/robots/amy"
                         className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
                       >
-                        Robot Amy
+                        {t("nav.robotAmy")}
                       </Link>
                       <Link
                         href="/robots/panda"
                         className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
                       >
-                        Robot Panda
+                        {t("nav.robotPanda")}
                       </Link>
                     </div>
                   </div>
@@ -268,21 +268,21 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                           onClick={() => setIsMenuOpen(false)}
                           className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
                         >
-                          Robot Xbot
+                          {t("nav.robotXbot")}
                         </Link>
                         <Link
                           href="/robots/amy"
                           onClick={() => setIsMenuOpen(false)}
                           className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
                         >
-                          Robot Amy
+                          {t("nav.robotAmy")}
                         </Link>
                         <Link
                           href="/robots/panda"
                           onClick={() => setIsMenuOpen(false)}
                           className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
                         >
-                          Robot Panda
+                          {t("nav.robotPanda")}
                         </Link>
                       </div>
                     </div>

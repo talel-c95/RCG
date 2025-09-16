@@ -1,38 +1,41 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useI18n } from "@/contexts/I18nContext"
 
-const phrases = [
+const buildPhrases = (t: (k: string) => string) => ([
   {
-    title: "Holistic Approach",
-    description: "We combine strategic consulting with practical robotics implementation for comprehensive solutions.",
+    title: t("home.phrases.holisticTitle"),
+    description: t("home.phrases.holisticDesc"),
     icon: "🔄"
   },
   {
-    title: "Tailored Solutions", 
-    description: "We understand that every business is unique and develop solutions to meet your specific challenges and goals.",
+    title: t("home.phrases.tailoredTitle"),
+    description: t("home.phrases.tailoredDesc"),
     icon: "⚙️"
   },
   {
-    title: "Local Expertise, Global Vision",
-    description: "Based in Tunisia, we possess a deep understanding of the local market while maintaining a global perspective on technological advancements.",
+    title: t("home.phrases.localGlobalTitle"),
+    description: t("home.phrases.localGlobalDesc"),
     icon: "🌍"
   },
   {
-    title: "Experienced Team",
-    description: "Our consultants and engineers have a proven track record of delivering successful automation projects.",
+    title: t("home.phrases.experiencedTitle"),
+    description: t("home.phrases.experiencedDesc"),
     icon: "👥"
   },
   {
-    title: "Long-Term Partnership",
-    description: "We are committed to building lasting relationships with our clients, providing ongoing support and guidance.",
+    title: t("home.phrases.partnershipTitle"),
+    description: t("home.phrases.partnershipDesc"),
     icon: "🤝"
   }
-]
+])
 
 const WhyChooseUs = () => {
+  const { t } = useI18n()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const phrases = buildPhrases(t)
 
   // Auto-advance every 5 seconds (slower for softer experience)
   useEffect(() => {
@@ -79,10 +82,10 @@ const WhyChooseUs = () => {
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground mb-4 sm:mb-6">
-            Why Choose Us?
+            {t("home.whyChooseUsTitle")}
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed px-4">
-            We provide tailor-made advice and robotics that allow companies to innovate, optimize operations and obtain measurable results.
+            {t("home.whyChooseUsSubtitle")}
           </p>
         </div>
 
@@ -132,6 +135,8 @@ const WhyChooseUs = () => {
               key={index}
               onClick={() => handleDotClick(index)}
               disabled={isTransitioning}
+              aria-label={`Go to slide ${index + 1}`}
+              title={`Go to slide ${index + 1}`}
               className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-700 ease-out disabled:opacity-50 ${
                 index === currentIndex 
                   ? "bg-primary scale-110 shadow-lg" 

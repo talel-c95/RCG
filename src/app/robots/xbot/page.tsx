@@ -5,6 +5,7 @@ import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import Image from "next/image";
 import { useNavigation } from "@/hooks/useNavigation";
+import { useI18n } from "@/contexts/I18nContext";
 
 // Custom hook for line-by-line animation
 function useLineAnimation(delay: number = 0) {
@@ -106,6 +107,7 @@ export default function RobotXbotPage() {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { handleNavigation } = useNavigation();
+  const { t } = useI18n();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -116,51 +118,45 @@ export default function RobotXbotPage() {
   const features = [
     {
       id: 1,
-      title: "500KG Max Load Capacity",
-      description:
-        "The body is made from 80% high-strength aluminum alloy, ensuring excellent stability. Designed for repetitive and cyclical transportation of heavy goods, with broad application scenarios to enhance efficiency and reliability in material flow.",
+      title: t('robots.xbot.carousel.loadTitle'),
+      description: t('robots.xbot.carousel.loadDesc'),
       image: "/images/xbot2.webp",
-      alt: "500KG Load Capacity",
+      alt: t('robots.xbot.carousel.loadTitle'),
     },
     {
       id: 2,
-      title: "40m LiDAR",
-      description:
-        "Equipped with advanced LiDAR technology for real-time navigation and safety. Suitable for factories covering tens of thousands of square meters and adaptable to various operational environments.",
+      title: t('robots.xbot.carousel.lidarTitle'),
+      description: t('robots.xbot.carousel.lidarDesc'),
       image: "/images/xbot5.webp",
-      alt: "40m LiDAR Technology",
+      alt: t('robots.xbot.carousel.lidarTitle'),
     },
     {
       id: 3,
-      title: "RGBD High-Definition Camera",
-      description:
-        "Binocular cameras + LiDAR, three-dimensional intelligent obstacle avoidance, real-time perception of the dynamic environment.",
+      title: t('robots.xbot.carousel.rgbdTitle'),
+      description: t('robots.xbot.carousel.rgbdDesc'),
       image: "/images/xbot6.webp",
-      alt: "RGBD High-Definition Camera",
+      alt: t('robots.xbot.carousel.rgbdTitle'),
     },
     {
       id: 4,
-      title: "13.3-Inch Touchscreen",
-      description:
-        "The large screen displays information query, map, etc. more clearly.",
+      title: t('robots.xbot.carousel.touchscreenTitle'),
+      description: t('robots.xbot.carousel.touchscreenDesc'),
       image: "/images/xbot4.webp",
-      alt: "13.3-Inch Touchscreen",
+      alt: t('robots.xbot.carousel.touchscreenTitle'),
     },
     {
       id: 5,
-      title: "Thresholds and Grooves Crossed Freely",
-      description:
-        "Equipped with 8-inch main drive wheels and 5-inch large double-row universal wheels. Delivers robust power to overcome 30mm thresholds and 40mm grooves with ease, enabling precise material transfer between production lines and meeting autonomous elevator riding requirements.",
+      title: t('robots.xbot.carousel.thresholdsTitle'),
+      description: t('robots.xbot.carousel.thresholdsDesc'),
       image: "/images/xbot7.webp",  
-      alt: "Thresholds and Grooves Crossed Freely",
+      alt: t('robots.xbot.carousel.thresholdsTitle'),
     },
     {
       id: 6,
-      title: "High-Security Lithium-Ion Battery",
-      description:
-        "Battery capacity 24V40AH, high temperature resistant, non-explosive, non-combustible, providing safe and reliable use, long battery life.",
+      title: t('robots.xbot.carousel.batteryTitle'),
+      description: t('robots.xbot.carousel.batteryDesc'),
       image: "/images/xbot3.webp",
-      alt: "High-Security Lithium-Ion Battery",
+      alt: t('robots.xbot.carousel.batteryTitle'),
     },
   ];
 
@@ -196,7 +192,7 @@ export default function RobotXbotPage() {
           <button
             onClick={toggleMute}
             className="absolute bottom-4 right-4 z-50 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 backdrop-blur-sm border-2 border-white/20 shadow-lg"
-            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            aria-label={isMuted ? t("common.unmuteVideo") : t("common.muteVideo")}
           >
             {isMuted ? (
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -221,7 +217,7 @@ export default function RobotXbotPage() {
               <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
                   src="/images/xbot1.avif"
-                  alt="Robot Xbot"
+                  alt={t("robots.nameXbot")}
                   fill
                   className="object-cover"
                   priority
@@ -234,22 +230,22 @@ export default function RobotXbotPage() {
             <div className="order-1 lg:order-2">
               <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-                Oxbot
+                {t("robots.nameXbot")}
               </div>
               <AnimatedText 
-                text="Revolutionizing Industrial Delivery"
+                text={t("robots.xbot.headline")}
                 delay={0}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
                 tag="h2"
               />
               <AnimatedText 
-                text="Your Smart Logistics Assistant"
+                text={t("robots.xbot.subhead")}
                 delay={300}
                 className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
                 tag="h3"
               />
               <AnimatedText 
-                text="Oxbot is an advanced Autonomous Mobile Robot (AMR) engineered to streamline industrial material handling. With impressive features like 500kg payload, 40m LiDAR, and RGBD obstacle avoidance, Oxbot ensures smooth, efficient, and safe transport across warehouses and factories."
+                text={t("robots.xbot.intro")}
                 delay={600}
                 className="text-base sm:text-lg text-foreground/80 leading-relaxed"
                 tag="p"
@@ -267,16 +263,16 @@ export default function RobotXbotPage() {
             <div className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-                Key Features
+                {t("robots.keyFeatures")}
               </div>
               <AnimatedText 
-                text="Advanced Features"
+                text={t("robots.advancedFeatures")}
                 delay={0}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
                 tag="h2"
               />
               <AnimatedText 
-                text="Real Impact"
+                text={t("robots.realImpact")}
                 delay={300}
                 className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
                 tag="h3"
@@ -290,8 +286,8 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">13.3&quot; Full HD Touchscreen</h4>
-                    <p className="text-secondary text-xs sm:text-sm">Clear, user-friendly interface for seamless operation</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('robots.xbot.bullets.screenTitle')}</h4>
+                    <p className="text-secondary text-xs sm:text-sm">{t('robots.xbot.bullets.screenDesc')}</p>
                   </div>
                 </div>
 
@@ -302,8 +298,8 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">24V40AH Lithium Battery</h4>
-                    <p className="text-secondary text-xs sm:text-sm">Long life, high safety, zero combustion</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('robots.xbot.bullets.batteryTitle')}</h4>
+                    <p className="text-secondary text-xs sm:text-sm">{t('robots.xbot.bullets.batteryDesc')}</p>
                   </div>
                 </div>
 
@@ -314,8 +310,8 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Smart Navigation</h4>
-                    <p className="text-secondary text-xs sm:text-sm">LiDAR + RGBD camera for 3D obstacle detection</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('robots.xbot.bullets.navTitle')}</h4>
+                    <p className="text-secondary text-xs sm:text-sm">{t('robots.xbot.bullets.navDesc')}</p>
                   </div>
                 </div>
 
@@ -326,8 +322,8 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Modular Design</h4>
-                    <p className="text-secondary text-xs sm:text-sm">Choose between Standard / Bin / Shelf modes</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('robots.xbot.bullets.modularTitle')}</h4>
+                    <p className="text-secondary text-xs sm:text-sm">{t('robots.xbot.bullets.modularDesc')}</p>
                   </div>
                 </div>
 
@@ -338,8 +334,8 @@ export default function RobotXbotPage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">Multiple Models</h4>
-                    <p className="text-secondary text-xs sm:text-sm">F150 (150kg), F300 (300kg), F500 (500kg)</p>
+                    <h4 className="font-semibold text-foreground mb-1 text-sm sm:text-base">{t('robots.xbot.bullets.modelsTitle')}</h4>
+                    <p className="text-secondary text-xs sm:text-sm">{t('robots.xbot.bullets.modelsDesc')}</p>
                   </div>
                 </div>
               </div>
@@ -349,8 +345,8 @@ export default function RobotXbotPage() {
             <div className="flex justify-center order-1 lg:order-2">
               <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
                 <Image
-                  src="/images/xbot1.avif"
-                  alt="Robot Xbot"
+                  src="/images/xbot8.webp"
+                  alt={t("robots.nameXbot")}
                   fill
                   className="object-cover"
                   priority
@@ -372,22 +368,22 @@ export default function RobotXbotPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-            Features
+            {t("robots.featuresBadge")}
           </div>
           <AnimatedText 
-            text="Built to Automate"
+            text={t("robots.builtToAutomate")}
             delay={0}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
             tag="h2"
           />
           <AnimatedText 
-            text="Designed to Perform."
+            text={t("robots.designedToPerform")}
             delay={300}
             className="text-xl sm:text-2xl font-semibold text-secondary mb-6 sm:mb-8"
             tag="h3"
           />
           <AnimatedText 
-            text="We empower industries with intelligent automation solutions that streamline workflows, enhance productivity, and drive sustainable growth across every sector."
+            text={t("industries.subtitle2")}
             delay={600}
             className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-4xl mx-auto leading-relaxed px-4"
             tag="p"
@@ -421,7 +417,7 @@ export default function RobotXbotPage() {
                           {/* Feature Tag */}
                           <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-3 sm:mb-4">
                             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           
                           {/* Title */}
@@ -463,7 +459,7 @@ export default function RobotXbotPage() {
                         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
                           <div className="inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-primary/90 backdrop-blur-sm text-primary-foreground rounded-full text-xs font-medium mb-3 sm:mb-4">
                             <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary-foreground rounded-full"></span>
-                            Feature {index + 1}
+                            {t('robots.featuresBadge')} {index + 1}
                           </div>
                           <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">
                             {feature.title}
@@ -489,12 +485,12 @@ export default function RobotXbotPage() {
             {/* Enhanced Service Cases Badge */}
             <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary-foreground rounded-full animate-pulse"></span>
-              Service Cases
+              {t("robots.serviceCases")}
             </div>
             
             {/* Main Title with Enhanced Typography */}
             <AnimatedText 
-              text="Real-World Impact Across Industries"
+              text={t("robots.realWorldImpact")}
               delay={0}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 sm:mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent"
               tag="h2"
@@ -502,7 +498,7 @@ export default function RobotXbotPage() {
             
             {/* Subtitle with Professional Styling */}
             <AnimatedText 
-              text="Trusted by Leaders in Logistics and Manufacturing"
+              text={t("robots.trustedByLeaders")}
               delay={400}
               className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary mb-8 sm:mb-10 leading-relaxed max-w-4xl mx-auto px-4"
               tag="h3"
@@ -511,7 +507,7 @@ export default function RobotXbotPage() {
             {/* Enhanced Description */}
             <div className="relative">
               <AnimatedText 
-                text="From smart warehouses to automated production lines, Oxbot delivers real results. Our robots are deployed in diverse industrial settings, improving efficiency, accuracy, and safety with every task."
+                text={t("robots.xbot.impactDesc")}
                 delay={800}
                 className="text-base sm:text-lg md:text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed relative z-10 px-4"
                 tag="p"

@@ -6,6 +6,7 @@ import Footer from "@/components/Layout/Footer";
 import Image from "next/image";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useI18n } from "@/contexts/I18nContext";
 
 export default function EmenuPage() {
   const [isMuted, setIsMuted] = useState(true);
@@ -13,6 +14,7 @@ export default function EmenuPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { handleNavigation } = useNavigation();
   const { theme } = useTheme();
+  const { t } = useI18n();
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -36,27 +38,27 @@ export default function EmenuPage() {
   const featureCards = [
     {
       id: 1,
-      title: "QR Code Access",
+      title: t('emenu.highlights.noApp'),
       description:
-        "Guests scan a table QR to instantly open your live menu—no app required.",
+        t('emenu.subtitle'),
       icon: (
         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm6-2h2v4h4V3h2v6h-8V3zm8 8h2v2h-2v-2zm-2 0v2h-2v-2h2zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm10 0h2v2h-2v-2zm0 4h2v2h-2v-2zm4-4h2v6h-6v-2h4v-4z"/></svg>
       ),
     },
     {
       id: 2,
-      title: "Contactless Ordering",
+      title: t('emenu.featureCards.contactlessTitle',) || 'Contactless Ordering',
       description:
-        "Browse items, add to cart, and place orders right from the phone.",
+        t('emenu.featureCards.contactlessDesc',) || 'Browse items, add to cart, and place orders right from the phone.',
       icon: (
         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0a2 2 0 100 4 2 2 0 000-4zM7.16 14h9.69c.75 0 1.41-.41 1.76-1.05l3.24-5.88A1 1 0 0019 6H6.21l-.94-2H2v2h2l3.6 7.59-.95 1.72A2 2 0 007 18h12v-2H7.42l.74-1.33z"/></svg>
       ),
     },
     {
       id: 3,
-      title: "Real-Time Updates",
+      title: t('emenu.featureCards.realtimeTitle',) || 'Real-Time Updates',
       description:
-        "Edit prices and availability in seconds—changes go live instantly.",
+        t('emenu.featureCards.realtimeDesc',) || 'Edit prices and availability in seconds—changes go live instantly.',
       icon: (
         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5a5 5 0 11-5-5zm-7 5a7 7 0 1014 0 7 7 0 00-14 0z"/></svg>
       ),
@@ -66,38 +68,38 @@ export default function EmenuPage() {
   const howItWorks = [
     { 
       id: 1, 
-      title: "Scan QR", 
-      desc: "Guests scan the table QR code with their phone camera.",
+      title: t('emenu.steps.scanTitle') || 'Scan QR', 
+      desc: t('emenu.steps.scanDesc') || 'Guests scan the table QR code with their phone camera.',
       icon: "📱"
     },
     { 
       id: 2, 
-      title: "Open Menu", 
-      desc: "A fast, responsive menu opens instantly.",
+      title: t('emenu.steps.openTitle') || 'Open Menu', 
+      desc: t('emenu.steps.openDesc') || 'A fast, responsive menu opens instantly.',
       icon: "⚡"
     },
     { 
       id: 3, 
-      title: "Browse & Customize Items", 
-      desc: "Guests can view menu categories, select items, and customize options (ingredients, size, quantity).",
+      title: t('emenu.steps.browseTitle') || 'Browse & Customize Items', 
+      desc: t('emenu.steps.browseDesc') || 'Guests can view menu categories, select items, and customize options (ingredients, size, quantity).',
       icon: "🍽️"
     },
     { 
       id: 4, 
-      title: "Place Order", 
-      desc: "Add items and submit orders contactlessly.",
+      title: t('emenu.steps.orderTitle') || 'Place Order', 
+      desc: t('emenu.steps.orderDesc') || 'Add items and submit orders contactlessly.',
       icon: "🛒"
     },
     { 
       id: 5, 
-      title: "Restaurant Dashboard", 
-      desc: "Staff receives orders in real-time, updates menu items, marks orders as ready, and manages inventory.",
+      title: t('emenu.steps.dashboardTitle') || 'Restaurant Dashboard', 
+      desc: t('emenu.steps.dashboardDesc') || 'Staff receives orders in real-time, updates menu items, marks orders as ready, and manages inventory.',
       icon: "📊"
     },
     { 
       id: 6, 
-      title: "Assistance & Notifications", 
-      desc: "Guests can call the waiter or request help. Staff receives notifications for requests.",
+      title: t('emenu.steps.assistTitle') || 'Assistance & Notifications', 
+      desc: t('emenu.steps.assistDesc') || 'Guests can call the waiter or request help. Staff receives notifications for requests.',
       icon: "🔔"
     },
   ];
@@ -157,7 +159,7 @@ export default function EmenuPage() {
         <button
           onClick={toggleMute}
           className="absolute bottom-4 right-4 z-50 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 shadow-lg"
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
+          aria-label={isMuted ? t("common.unmuteVideo") : t("common.muteVideo")}
         >
           {isMuted ? (
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -185,34 +187,34 @@ export default function EmenuPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 dark:bg-gradient-to-r dark:from-indigo-900/50 dark:to-emerald-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold mb-6 shadow-sm">
               <div className="w-2 h-2 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse"></div>
-              Digital Menu Solution
+              {t("emenu.badge")}
             </div>
 
             {/* Main title with gradient */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
               <span className="text-foreground dark:bg-gradient-to-r dark:from-foreground dark:via-indigo-400 dark:to-emerald-400 dark:bg-clip-text dark:text-transparent">
-                E-menu
+                {t("emenu.title")}
               </span>
             </h1>
             
             {/* Subtitle */}
             <p className="text-xl sm:text-2xl text-secondary leading-relaxed mb-8 max-w-3xl mx-auto">
-              Guests scan a QR code at the table to view your live menu and order—fast, contactless, and beautiful on every device.
+              {t("emenu.subtitle")}
             </p>
             
             {/* Feature highlights */}
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                No App Required
+                {t("emenu.highlights.noApp")}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                Instant Access
+                {t("emenu.highlights.instantAccess")}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                Real-time Updates
+                {t("emenu.highlights.realtimeUpdates")}
               </div>
             </div>
           </div>
@@ -227,13 +229,13 @@ export default function EmenuPage() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
                 <div className="w-2 h-2 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse"></div>
-                Premium Experience
+                {t("emenu.premiumBadge")}
           </div>
               <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-                Why E-menu
+                {t("emenu.whyTitle")}
           </h2>
               <p className="mt-3 text-lg text-secondary max-w-prose">
-                Designed for global brands and modern hospitality—fast, elegant, and effortless for every guest.
+                {t("emenu.whySubtitle")}
               </p>
 
               <div className="mt-8 space-y-5">
@@ -277,8 +279,8 @@ export default function EmenuPage() {
 
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">How it works</h2>
-            <p className="text-lg text-secondary max-w-2xl mx-auto">From scan to order and management in six steps.</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">{t("emenu.howTitle")}</h2>
+            <p className="text-lg text-secondary max-w-2xl mx-auto">{t("emenu.howSubtitle")}</p>
           </div>
 
           {/* 3D Carousel Container */}
@@ -418,24 +420,24 @@ export default function EmenuPage() {
           {/* Global by design */}
           <div className="mt-16">
             <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold text-foreground mb-2">Global by design</h3>
-              <p className="text-secondary">Built for international restaurants and diverse customer bases</p>
+              <h3 className="text-xl font-semibold text-foreground mb-2">{t("emenu.globalTitle")}</h3>
+              <p className="text-secondary">{t("emenu.globalSubtitle")}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="bg-surface rounded-2xl shadow-sm border border-border p-6 hover:shadow-md transition-shadow">
                 <div className="text-2xl mb-3">🌍</div>
-                <div className="text-sm font-semibold text-foreground mb-2">Multilingual</div>
-                <p className="text-sm text-secondary">Serve menus in multiple languages with easy switching.</p>
+                <div className="text-sm font-semibold text-foreground mb-2">{t("emenu.globalCards.multilingualTitle")}</div>
+                <p className="text-sm text-secondary">{t("emenu.globalCards.multilingualDesc")}</p>
               </div>
               <div className="bg-surface rounded-2xl shadow-sm border border-border p-6 hover:shadow-md transition-shadow">
                 <div className="text-2xl mb-3">↔️</div>
-                <div className="text-sm font-semibold text-foreground mb-2">RTL Support</div>
-                <p className="text-sm text-secondary">Right‑to‑left layouts for Arabic, Hebrew, and more.</p>
+                <div className="text-sm font-semibold text-foreground mb-2">{t("emenu.globalCards.rtlTitle")}</div>
+                <p className="text-sm text-secondary">{t("emenu.globalCards.rtlDesc")}</p>
               </div>
               <div className="bg-surface rounded-2xl shadow-sm border border-border p-6 hover:shadow-md transition-shadow">
                 <div className="text-2xl mb-3">💰</div>
-                <div className="text-sm font-semibold text-foreground mb-2">Localization</div>
-                <p className="text-sm text-secondary">Localized currencies, formats, and regional preferences.</p>
+                <div className="text-sm font-semibold text-foreground mb-2">{t("emenu.globalCards.localizationTitle")}</div>
+                <p className="text-sm text-secondary">{t("emenu.globalCards.localizationDesc")}</p>
               </div>
             </div>
           </div>
@@ -447,11 +449,11 @@ export default function EmenuPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="rounded-2xl border border-border bg-surface p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground">Ready to modernize your dining?</h3>
-              <p className="mt-2 text-secondary">Launch a beautiful, contactless menu in minutes.</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground">{t("emenu.ctaTitle")}</h3>
+              <p className="mt-2 text-secondary">{t("emenu.ctaSubtitle")}</p>
             </div>
             <a href="/Contact" className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-500 transition shadow-sm">
-              Contact us
+              {t("emenu.ctaButton")}
             </a>
           </div>
         </div>
