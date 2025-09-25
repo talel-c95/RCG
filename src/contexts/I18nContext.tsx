@@ -309,14 +309,14 @@ const translations = {
     // Contact
     contactPage: {
       heroTitle: "Contact us",
-      heroSubtitle: "Rakhami Group is ready to provide the right solution according to your needs",
+      heroSubtitle: "Rkhami Group is ready to provide the right solution according to your needs",
       getInTouchTitle: "Get in touch",
       getInTouchSubtitle: "Ready to discuss your project? Schedule a meeting with our CEO to explore how we can help transform your business.",
       headOffice: "Head Office",
       emailUs: "Email Us",
       callUs: "Call Us",
       followSocial: "Follow our social media",
-      formTitle: "Schedule Meeting with Mr Rakhami",
+      formTitle: "Schedule Meeting with Mr Rkhami",
       formIntro: "Fill out the form below and we'll get back to you ASAP to schedule your meeting.",
       labels: {
         companyName: "Company Name *",
@@ -736,14 +736,14 @@ const translations = {
     // Contact
     contactPage: {
       heroTitle: "Contactez-nous",
-      heroSubtitle: "Rakhami Group est prêt à fournir la solution adaptée à vos besoins",
+      heroSubtitle: "Rkhami Group est prêt à fournir la solution adaptée à vos besoins",
       getInTouchTitle: "Entrer en contact",
       getInTouchSubtitle: "Prêt à discuter de votre projet ? Planifiez un rendez‑vous avec notre CEO pour explorer comment nous pouvons transformer votre activité.",
       headOffice: "Siège",
       emailUs: "Nous écrire",
       callUs: "Nous appeler",
       followSocial: "Suivez-nous sur les réseaux",
-      formTitle: "Planifier une réunion avec M. Rakhami",
+      formTitle: "Planifier une réunion avec M. Rkhami",
       formIntro: "Remplissez le formulaire ci‑dessous et nous vous recontacterons rapidement pour planifier la réunion.",
       labels: {
         companyName: "Nom de l'entreprise *",

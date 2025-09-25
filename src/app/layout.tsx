@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rakhami Group App",
+  title: "Rkhami Group App",
   description: "Modern web application with theme switching and multilingual support",
 };
 

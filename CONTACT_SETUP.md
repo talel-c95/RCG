@@ -28,7 +28,7 @@ EMAIL_USER=your-company-email@gmail.com
 EMAIL_PASS=your-app-password
 
 # Company email where meeting requests will be sent
-COMPANY_EMAIL=ceo@rakhamigroup.com
+COMPANY_EMAIL=ceo@rkhamigroup.com
 ```
 
 ### 3. Gmail Setup (Recommended for testing)

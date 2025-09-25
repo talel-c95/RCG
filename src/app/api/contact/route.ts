@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       <html>
       <head>
         <meta charset="utf-8">
-        <title>New Contact Form Submission - Rakhami Group</title>
+        <title>New Contact Form Submission - Rkhami Group</title>
         <style>
           body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
         <div class="container">
           <div class="header">
             <h1>New Contact Form Submission</h1>
-            <p>Rakhami Group Website Inquiry</p>
+            <p>Rkhami Group Website Inquiry</p>
           </div>
           
           <div class="content">
@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
               })}
             </div>
             <div class="company-info">
-              Rakhami Consulting Group<br>
+              Rkhami Consulting Group<br>
               Immeuble Carthage Palace, Bloc A, 5ème Etage App. A51<br>
               Centre Urbain Nord, 1082 Tunis, Tunisie
             </div>
@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to company with all form data
     await transporter.sendMail({
-      from: `"Rakhami Group Website" <${process.env.Email_COMPANY}>`,
+      from: `"Rkhami Group Website" <${process.env.Email_COMPANY}>`,
       to: process.env.Email_COMPANY, // Send to yourself for now
       subject: `New Contact Form Submission - ${formData.name || 'Unknown Contact'} (${formData.industry || 'No Industry'})`,
       html: htmlEmail,

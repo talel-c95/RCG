@@ -29,9 +29,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
   const navigationItems = [
     { name: t("nav.home"), href: "#home", isHash: true },
     { name: t("nav.industry"), href: "#Industries", isHash: true },
-    
     { name: t("nav.services"), href: "#Services", isHash: true },
-    { name: t("nav.emenu"), href: "/qr-menu/emenu", isHash: false },
     { name: t("nav.robots"), href: "#Robots", isHash: true },
     { name: t("nav.about"), href: "#About", isHash: true },
     { name: t("nav.faq"), href: "#FQA", isHash: true },
@@ -121,7 +119,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
               <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                 <Image
                   src={logoPng}
-                  alt="Rakhami Group Logo"
+                  alt="Rkhami Group Logo"
                   fill
                   priority
                   className="object-contain"
@@ -206,6 +204,12 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                         className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
                       >
                         {t("nav.creationWeb")}
+                      </Link>
+                      <Link
+                        href="/qr-menu/emenu"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        {t("nav.emenu")}
                       </Link>
                     </div>
                   </div>
@@ -338,6 +342,13 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                           className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
                         >
                           {t("nav.creationWeb")}
+                        </Link>
+                        <Link
+                          href="/qr-menu/emenu"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
+                        >
+                          {t("nav.emenu")}
                         </Link>
                       </div>
                     </div>
