@@ -26,7 +26,8 @@ const translations = {
       emenu: "E-menu",
       robotXbot: "Robot Xbot",
       robotAmy: "Robot Amy",
-      robotPanda: "Robot Panda"
+      robotPanda: "Robot Panda",
+      creationWeb: "Creation Web"
     },
     // Home
     home: {
@@ -348,6 +349,88 @@ const translations = {
         description: "Thank you for your interest! We've received your meeting request and will send you an email confirmation ASAP to confirm the meeting details.",
         button: "Got it, thanks!"
       }
+    },
+    // Creation Web
+    creationWeb: {
+      heroTitle: "Web Creation Services",
+      heroSubtitle: "Modern, Responsive & Animated Websites",
+      heroDescription: "We build cutting-edge websites that combine stunning design with powerful functionality. From e-commerce platforms to business sites and personal portfolios, we create digital experiences that engage your audience and drive results.",
+      ctaButton: "Get Your Website",
+      services: {
+        ecommerce: {
+          title: "E-commerce Solutions",
+          description: "Complete online stores with secure payment processing, inventory management, and customer analytics."
+        },
+        business: {
+          title: "Business Websites",
+          description: "Professional corporate sites with modern design, mobile responsiveness, and integrated business tools."
+        },
+        personal: {
+          title: "Personal Portfolios",
+          description: "Stunning personal websites and portfolios that showcase your work and attract opportunities."
+        }
+      },
+      features: {
+        modern: "Modern Design",
+        responsive: "Mobile Responsive",
+        animated: "Smooth Animations",
+        fast: "Lightning Fast",
+        seo: "SEO Optimized",
+        secure: "Secure & Reliable"
+      },
+      showcase: {
+        premiumDesign: "Premium Design",
+        desktop: "Desktop",
+        mobile: "Mobile",
+        scenarios: "Scenarios",
+        responsiveMobileDesign: "Responsive mobile design",
+        professionalDesktopExperience: "Professional desktop experience",
+        ourWebCreationServices: "Our Web Creation Services",
+        weSpecializeInCreating: "We specialize in creating modern, responsive, and engaging websites that help your business thrive in the digital world."
+      },
+      mockups: {
+        enterpriseDashboard: "Enterprise Dashboard",
+        luxuryEcommerce: "Luxury E-commerce",
+        b2bPlatform: "B2B Platform",
+        mobileCheckout: "Mobile Checkout",
+        bookingApp: "Booking App",
+        clientDashboard: "Client Dashboard",
+        analyticsPro: "Analytics Pro",
+        luxe: "LUXE",
+        techFlow: "TechFlow",
+        diamondRing: "Diamond Ring",
+        goldWatch: "Gold Watch",
+        pearlNecklace: "Pearl Necklace",
+        cloudSolutions: "Cloud Solutions",
+        dataAnalytics: "Data Analytics",
+        aiIntegration: "AI Integration",
+        consultation: "Consultation",
+        designReview: "Design Review",
+        strategySession: "Strategy Session",
+        cardDetails: "Card Details",
+        verification: "Verification",
+        processing: "Processing",
+        paymentReceived: "Payment received",
+        transferSent: "Transfer sent",
+        salaryDeposit: "Salary deposit",
+        revenue: "Revenue",
+        growth: "Growth",
+        accountBalance: "Account Balance",
+        quickActions: "Quick Actions",
+        recentActivity: "Recent Activity",
+        selectService: "Select Service",
+        availableTimes: "Available Times",
+        bookNow: "Book Now",
+        booking: "Booking...",
+        payNow: "Pay Now",
+        checkout: "Checkout",
+        myAccount: "My Account",
+        transfer: "Transfer",
+        payBills: "Pay Bills",
+        viewingNow: "viewing now",
+        accountActive: "Account active",
+        implementationInProgress: "Implementation in Progress"
+      }
     }
   },
   fr: {
@@ -370,7 +453,8 @@ const translations = {
       emenu: "E-menu",
       robotXbot: "Robot Xbot",
       robotAmy: "Robot Amy",
-      robotPanda: "Robot Panda"
+      robotPanda: "Robot Panda",
+      creationWeb: "Création Web"
     },
     // Home
     home: {
@@ -691,6 +775,88 @@ const translations = {
         title: "Demande envoyée !",
         description: "Merci pour votre intérêt ! Nous avons bien reçu votre demande et vous enverrons une confirmation par email au plus vite.",
         button: "Compris, merci !"
+      }
+    },
+    // Creation Web
+    creationWeb: {
+      heroTitle: "Services de Création Web",
+      heroSubtitle: "Sites Web Modernes, Responsifs & Animés",
+      heroDescription: "Nous créons des sites web de pointe qui allient design époustouflant et fonctionnalités puissantes. Des plateformes e-commerce aux sites d'entreprise et portfolios personnels, nous créons des expériences numériques qui captivent votre audience et génèrent des résultats.",
+      ctaButton: "Obtenez Votre Site Web",
+      services: {
+        ecommerce: {
+          title: "Solutions E-commerce",
+          description: "Boutiques en ligne complètes avec traitement sécurisé des paiements, gestion des stocks et analyses clients."
+        },
+        business: {
+          title: "Sites d'Entreprise",
+          description: "Sites corporatifs professionnels avec design moderne, responsivité mobile et outils business intégrés."
+        },
+        personal: {
+          title: "Portfolios Personnels",
+          description: "Sites personnels et portfolios époustouflants qui mettent en valeur votre travail et attirent les opportunités."
+        }
+      },
+      features: {
+        modern: "Design Moderne",
+        responsive: "Responsive Mobile",
+        animated: "Animations Fluides",
+        fast: "Ultra Rapide",
+        seo: "Optimisé SEO",
+        secure: "Sécurisé & Fiable"
+      },
+      showcase: {
+        premiumDesign: "Design Premium",
+        desktop: "Bureau",
+        mobile: "Mobile",
+        scenarios: "Scénarios",
+        responsiveMobileDesign: "Design mobile responsive",
+        professionalDesktopExperience: "Expérience bureau professionnelle",
+        ourWebCreationServices: "Nos Services de Création Web",
+        weSpecializeInCreating: "Nous nous spécialisons dans la création de sites web modernes, responsifs et engageants qui aident votre entreprise à prospérer dans le monde numérique."
+      },
+      mockups: {
+        enterpriseDashboard: "Tableau de Bord Entreprise",
+        luxuryEcommerce: "E-commerce de Luxe",
+        b2bPlatform: "Plateforme B2B",
+        mobileCheckout: "Paiement Mobile",
+        bookingApp: "App de Réservation",
+        clientDashboard: "Tableau de Bord Client",
+        analyticsPro: "Analytics Pro",
+        luxe: "LUXE",
+        techFlow: "TechFlow",
+        diamondRing: "Bague Diamant",
+        goldWatch: "Montre Or",
+        pearlNecklace: "Collier Perles",
+        cloudSolutions: "Solutions Cloud",
+        dataAnalytics: "Analytique de Données",
+        aiIntegration: "Intégration IA",
+        consultation: "Consultation",
+        designReview: "Révision Design",
+        strategySession: "Session Stratégie",
+        cardDetails: "Détails Carte",
+        verification: "Vérification",
+        processing: "Traitement",
+        paymentReceived: "Paiement reçu",
+        transferSent: "Transfert envoyé",
+        salaryDeposit: "Dépôt salaire",
+        revenue: "Revenus",
+        growth: "Croissance",
+        accountBalance: "Solde du Compte",
+        quickActions: "Actions Rapides",
+        recentActivity: "Activité Récente",
+        selectService: "Sélectionner un Service",
+        availableTimes: "Créneaux Disponibles",
+        bookNow: "Réserver Maintenant",
+        booking: "Réservation...",
+        payNow: "Payer Maintenant",
+        checkout: "Commande",
+        myAccount: "Mon Compte",
+        transfer: "Transfert",
+        payBills: "Payer les Factures",
+        viewingNow: "en train de regarder",
+        accountActive: "Compte actif",
+        implementationInProgress: "Mise en œuvre en cours"
       }
     }
   }

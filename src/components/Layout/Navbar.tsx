@@ -29,10 +29,11 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
   const navigationItems = [
     { name: t("nav.home"), href: "#home", isHash: true },
     { name: t("nav.industry"), href: "#Industries", isHash: true },
-    { name: t("nav.about"), href: "#About", isHash: true },
+    
     { name: t("nav.services"), href: "#Services", isHash: true },
     { name: t("nav.emenu"), href: "/qr-menu/emenu", isHash: false },
     { name: t("nav.robots"), href: "#Robots", isHash: true },
+    { name: t("nav.about"), href: "#About", isHash: true },
     { name: t("nav.faq"), href: "#FQA", isHash: true },
     { name: t("nav.contact"), href: "/Contact", isHash: false },
   ];
@@ -177,6 +178,38 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                     </div>
                   </div>
                 </div>
+              ) : item.href === "#Services" ? (
+                <div key={item.name} className="relative group">
+                  <button
+                    onClick={() => handleNavigation(item)}
+                    className={`group inline-flex items-center gap-1.5 relative font-medium transition-all duration-500 ease-in-out cursor-pointer
+                             ${isScrolled 
+                               ? 'text-white/90 hover:text-white text-base' 
+                               : 'text-white/90 hover:text-white text-base'
+                             }
+                             after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 
+                             after:bg-gradient-to-r after:from-primary after:to-highlight
+                             after:transition-all after:duration-500 group-hover:after:w-full`}
+                  >
+                    {item.name}
+                    <svg className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 transition" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  {/* Invisible bridge to prevent dropdown from disappearing */}
+                  <div className="absolute left-0 right-0 h-3 bg-transparent"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block">
+                    <div className={`w-56 rounded-xl text-white shadow-2xl backdrop-blur-md border border-white/20 p-2
+                                    ${isScrolled ? 'bg-black/80 dark:bg-gray-900/95' : 'bg-black/55 dark:bg-gray-900/80'}`}>
+                      <Link
+                        href="/creation-web"
+                        className="block w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 transition"
+                      >
+                        {t("nav.creationWeb")}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <button
                   key={item.name}
@@ -283,6 +316,28 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
                           className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
                         >
                           {t("nav.robotPanda")}
+                        </Link>
+                      </div>
+                    </div>
+                  ) : item.href === "#Services" ? (
+                    <div className="space-y-1">
+                      <button
+                        onClick={() => {
+                          handleNavigation(item);
+                          setIsMenuOpen(false);
+                        }}
+                        className="block w-full px-3 py-3 rounded-lg text-foreground/80 hover:text-foreground hover:bg-surface/50 font-medium transition-all duration-300 text-left"
+                      >
+                        {item.name}
+                      </button>
+                      {/* Mobile services submenu */}
+                      <div className="ml-4 space-y-1">
+                        <Link
+                          href="/creation-web"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-foreground/70 hover:text-foreground hover:bg-surface/30 text-sm transition-all duration-300"
+                        >
+                          {t("nav.creationWeb")}
                         </Link>
                       </div>
                     </div>
