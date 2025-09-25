@@ -182,9 +182,9 @@ const LuxuryEcommerce = () => {
   const [viewCount, setViewCount] = useState(1247);
 
   const products = [
-    { name: "Diamond Ring", price: "€2,499", color: "amber", image: "💍" },
-    { name: "Gold Watch", price: "€3,299", color: "yellow", image: "⌚" },
-    { name: "Pearl Necklace", price: "€1,899", color: "orange", image: "📿" }
+    { name: t('creationWeb.mockups.diamondRing'), price: "€2,499", color: "amber", image: "💍" },
+    { name: t('creationWeb.mockups.goldWatch'), price: "€3,299", color: "yellow", image: "⌚" },
+    { name: t('creationWeb.mockups.pearlNecklace'), price: "€1,899", color: "orange", image: "📿" }
   ];
 
   useEffect(() => {
@@ -251,15 +251,15 @@ const LuxuryEcommerce = () => {
       
       {/* Hero with Dynamic Content */}
       <motion.div 
-        className="h-16 bg-gradient-to-r from-amber-50 to-yellow-50 flex items-center justify-center border-b border-amber-100"
+        className="h-20 bg-gradient-to-r from-amber-50 to-yellow-50 flex items-center justify-center border-b border-amber-100 px-4"
         key={currentProduct}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="text-center">
+        <div className="text-center w-full">
           <motion.div 
-            className="text-2xl mb-2"
+            className="text-3xl mb-3"
             key={products[currentProduct].image}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -268,7 +268,7 @@ const LuxuryEcommerce = () => {
             {products[currentProduct].image}
           </motion.div>
           <motion.div 
-            className="text-sm font-bold text-gray-800"
+            className="text-base font-bold text-gray-800 mb-1"
             key={products[currentProduct].name}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
@@ -277,7 +277,7 @@ const LuxuryEcommerce = () => {
             {products[currentProduct].name}
           </motion.div>
           <motion.div 
-            className="text-xs text-gray-600"
+            className="text-sm font-semibold text-gray-700"
             key={products[currentProduct].price}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
@@ -289,24 +289,25 @@ const LuxuryEcommerce = () => {
       </motion.div>
       
       {/* Animated Product Grid */}
-      <div className="p-3 grid grid-cols-3 gap-2">
+      <div className="p-3 grid grid-cols-3 gap-3">
         {products.map((product, index) => (
           <motion.div 
             key={index}
-            className={`h-10 bg-gradient-to-br from-${product.color}-100 to-${product.color}-200 rounded-lg border border-${product.color}-200 shadow-sm flex items-center justify-center cursor-pointer`}
+            className={`h-12 bg-gradient-to-br from-${product.color}-100 to-${product.color}-200 rounded-lg border border-${product.color}-200 shadow-sm flex flex-col items-center justify-center cursor-pointer p-2 ${
+              currentProduct === index ? 'ring-2 ring-amber-400 ring-opacity-50' : ''
+            }`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: 1, 
-              scale: currentProduct === index ? 1.05 : 1,
-              borderColor: currentProduct === index ? `rgb(251 191 36)` : `rgb(251 191 36 / 0.2)`
+              scale: currentProduct === index ? 1.05 : 1
             }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setCurrentProduct(index)}
           >
             <motion.div 
-              className="text-lg"
+              className="text-lg mb-1"
               animate={{ 
                 scale: currentProduct === index ? 1.2 : 1,
                 rotate: currentProduct === index ? 360 : 0
@@ -315,6 +316,9 @@ const LuxuryEcommerce = () => {
             >
               {product.image}
             </motion.div>
+            <div className="text-xs text-gray-600 font-medium text-center leading-tight">
+              {product.name.split(' ')[0]}
+            </div>
           </motion.div>
         ))}
       </div>
@@ -344,9 +348,9 @@ const B2BPlatform = () => {
   const [progress, setProgress] = useState(0);
 
   const services = [
-    { name: "Cloud Solutions", progress: 85, color: "blue", price: "€299/mo" },
-    { name: "Data Analytics", progress: 92, color: "indigo", price: "€199/mo" },
-    { name: "AI Integration", progress: 78, color: "purple", price: "€399/mo" }
+    { name: t('creationWeb.mockups.cloudSolutions'), progress: 85, color: "blue", price: "€299/mo" },
+    { name: t('creationWeb.mockups.dataAnalytics'), progress: 92, color: "indigo", price: "€199/mo" },
+    { name: t('creationWeb.mockups.aiIntegration'), progress: 78, color: "purple", price: "€399/mo" }
   ];
 
   useEffect(() => {
@@ -589,7 +593,7 @@ const MobileCheckout = () => {
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
 
-  const steps = ["Card Details", "Verification", "Processing"];
+  const steps = [t('creationWeb.mockups.cardDetails'), t('creationWeb.mockups.verification'), t('creationWeb.mockups.processing')];
 
   useEffect(() => {
     // Simulate checkout process
@@ -619,7 +623,7 @@ const MobileCheckout = () => {
     <div className="h-full bg-gradient-to-b from-white to-slate-50">
       {/* Header */}
       <div className="h-8 bg-white border-b border-gray-100 flex items-center justify-between px-3">
-        <div className="text-xs font-bold text-gray-800">Checkout</div>
+        <div className="text-xs font-bold text-gray-800">{t('creationWeb.mockups.checkout')}</div>
         <div className="w-4 h-4 bg-gray-100 rounded-lg flex items-center justify-center">
           <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
         </div>
@@ -638,38 +642,42 @@ const MobileCheckout = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           />
         </motion.div>
-        <motion.div 
-          className="text-xs font-semibold text-gray-800"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          💎 Diamond Ring
-        </motion.div>
-        <motion.div 
-          className="text-xs text-gray-600"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          €2,499.00
-        </motion.div>
+         <motion.div 
+           className="text-sm font-semibold text-gray-800"
+           initial={{ opacity: 0, y: 5 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.2 }}
+         >
+           💎 Diamond Ring
+         </motion.div>
+         <motion.div 
+           className="text-sm text-gray-600 font-medium"
+           initial={{ opacity: 0, y: 5 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.3 }}
+         >
+           €2,499.00
+         </motion.div>
       </div>
       
-      {/* Checkout Form */}
-      <div className="p-2 space-y-2">
-        <motion.div 
-          className="h-4 bg-gray-100 rounded-lg border border-gray-200"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
-        />
-        <motion.div 
-          className="h-4 bg-gray-100 rounded-lg border border-gray-200"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-        />
+       {/* Checkout Form */}
+       <div className="p-2 space-y-3">
+         <motion.div 
+           className="h-6 bg-white rounded-lg border border-gray-200 px-3 flex items-center"
+           initial={{ opacity: 0, x: -10 }}
+           animate={{ opacity: 1, x: 0 }}
+           transition={{ delay: 0.4 }}
+         >
+           <span className="text-xs text-gray-500">Card Number: **** **** **** 1234</span>
+         </motion.div>
+         <motion.div 
+           className="h-6 bg-white rounded-lg border border-gray-200 px-3 flex items-center"
+           initial={{ opacity: 0, x: -10 }}
+           animate={{ opacity: 1, x: 0 }}
+           transition={{ delay: 0.5 }}
+         >
+           <span className="text-xs text-gray-500">Expiry: 12/25</span>
+         </motion.div>
         
         {/* Progress Bar (shown during processing) */}
         {isProcessing && (
@@ -688,30 +696,30 @@ const MobileCheckout = () => {
           </motion.div>
         )}
         
-        <motion.button
-          className={`h-6 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 ${
-            isProcessing 
-              ? 'bg-gradient-to-r from-blue-500 to-blue-600' 
-              : 'bg-gradient-to-r from-emerald-500 to-emerald-600'
-          }`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handlePayNow}
-          disabled={isProcessing}
-        >
-          <motion.div 
-            className="text-xs text-white font-semibold"
-            key={isProcessing ? 'processing' : 'pay'}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {isProcessing ? `${steps[currentStep]}...` : t('creationWeb.mockups.payNow')}
-          </motion.div>
-        </motion.button>
+         <motion.button
+           className={`h-8 rounded-lg flex items-center justify-center shadow-sm font-semibold transition-all duration-300 ${
+             isProcessing 
+               ? 'bg-gradient-to-r from-blue-500 to-blue-600' 
+               : 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700'
+           }`}
+           initial={{ opacity: 0, y: 10 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.6 }}
+           whileHover={{ scale: isProcessing ? 1 : 1.02 }}
+           whileTap={{ scale: isProcessing ? 1 : 0.98 }}
+           onClick={handlePayNow}
+           disabled={isProcessing}
+         >
+           <motion.div 
+             className="text-sm text-white"
+             key={isProcessing ? 'processing' : 'pay'}
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             transition={{ duration: 0.3 }}
+           >
+             {isProcessing ? `${steps[currentStep]}...` : t('creationWeb.mockups.payNow')}
+           </motion.div>
+         </motion.button>
       </div>
     </div>
   );
@@ -726,9 +734,9 @@ const MobileBooking = () => {
   const [bookingProgress, setBookingProgress] = useState(0);
 
   const services = [
-    { name: "Web Design", color: "blue", duration: "30 min", price: "€150" },
-    { name: "SEO Review", color: "indigo", duration: "45 min", price: "€200" },
-    { name: "Strategy Session", color: "purple", duration: "60 min", price: "€300" }
+    { name: t('creationWeb.mockups.consultation'), color: "blue", duration: "30 min", price: "€150" },
+    { name: t('creationWeb.mockups.designReview'), color: "indigo", duration: "45 min", price: "€200" },
+    { name: t('creationWeb.mockups.strategySession'), color: "purple", duration: "60 min", price: "€300" }
   ];
 
   const timeSlots = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00"];
@@ -768,7 +776,7 @@ const MobileBooking = () => {
     <div className="h-full bg-gradient-to-b from-white to-slate-50">
       {/* Header */}
       <div className="h-8 bg-white border-b border-gray-100 flex items-center justify-between px-3">
-        <div className="text-xs font-bold text-gray-800">Book Appointment</div>
+         <div className="text-xs font-bold text-gray-800">{t('creationWeb.mockups.bookingApp')}</div>
         <div className="w-4 h-4 bg-blue-50 rounded-lg flex items-center justify-center">
           <motion.div 
             className="w-2 h-2 bg-blue-500 rounded-full"
@@ -788,36 +796,41 @@ const MobileBooking = () => {
         >
           {t('creationWeb.mockups.selectService')}
         </motion.div>
-        <div className="space-y-1">
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              className={`h-6 bg-gradient-to-r from-${service.color}-100 to-${service.color}-200 rounded-lg border border-${service.color}-200 shadow-sm flex items-center px-2 cursor-pointer`}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ 
-                opacity: 1, 
-                x: 0,
-                scale: selectedService === index ? 1.02 : 1,
-                borderColor: selectedService === index ? `rgb(59 130 246)` : `rgb(59 130 246 / 0.2)`
-              }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedService(index)}
-            >
-              <motion.div 
-                className={`w-2 h-2 bg-${service.color}-500 rounded-full mr-2`}
-                animate={{ 
-                  scale: selectedService === index ? 1.3 : 1,
-                  opacity: selectedService === index ? 1 : 0.7
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              <div className="text-xs text-gray-700 flex-1">{service.name}</div>
-              <div className="text-xs text-gray-500">{service.duration}</div>
-            </motion.div>
-          ))}
-        </div>
+         <div className="space-y-2">
+           {services.map((service, index) => (
+             <motion.div 
+               key={index}
+               className={`h-8 rounded-lg border shadow-sm flex items-center px-3 cursor-pointer transition-all duration-300 ${
+                 selectedService === index 
+                   ? 'bg-blue-100 border-blue-300 shadow-md' 
+                   : 'bg-gradient-to-r from-gray-50 to-gray-100 border-gray-200 hover:border-gray-300'
+               }`}
+               initial={{ opacity: 0, x: -20 }}
+               animate={{ 
+                 opacity: 1, 
+                 x: 0,
+                 scale: selectedService === index ? 1.02 : 1
+               }}
+               transition={{ duration: 0.3, delay: index * 0.1 }}
+               whileHover={{ scale: 1.02 }}
+               whileTap={{ scale: 0.98 }}
+               onClick={() => setSelectedService(index)}
+             >
+               <motion.div 
+                 className={`w-3 h-3 rounded-full mr-3 ${
+                   selectedService === index ? 'bg-blue-500' : `bg-${service.color}-400`
+                 }`}
+                 animate={{ 
+                   scale: selectedService === index ? 1.2 : 1,
+                   opacity: selectedService === index ? 1 : 0.7
+                 }}
+                 transition={{ duration: 0.3 }}
+               />
+               <div className="text-xs text-gray-800 flex-1 font-medium">{service.name}</div>
+               <div className="text-xs text-gray-500">{service.duration}</div>
+             </motion.div>
+           ))}
+         </div>
       </div>
       
       {/* Time Slots */}
@@ -830,30 +843,29 @@ const MobileBooking = () => {
         >
           {t('creationWeb.mockups.availableTimes')}
         </motion.div>
-        <div className="grid grid-cols-3 gap-1">
-          {timeSlots.slice(0, 3).map((time, index) => (
-            <motion.div 
-              key={index}
-              className={`h-4 rounded-lg text-xs flex items-center justify-center border cursor-pointer ${
-                selectedTime === index 
-                  ? 'bg-blue-100 border-blue-200 text-blue-700' 
-                  : 'bg-gray-100 border-gray-200 text-gray-600'
-              }`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                backgroundColor: selectedTime === index ? 'rgb(219 234 254)' : 'rgb(243 244 246)'
-              }}
-              transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setSelectedTime(index)}
-            >
-              {time}
-            </motion.div>
-          ))}
-        </div>
+         <div className="grid grid-cols-3 gap-2">
+           {timeSlots.slice(0, 3).map((time, index) => (
+             <motion.div 
+               key={index}
+               className={`h-6 rounded-lg text-xs flex items-center justify-center border cursor-pointer font-medium transition-all duration-300 ${
+                 selectedTime === index 
+                   ? 'bg-blue-100 border-blue-300 text-blue-700 shadow-sm' 
+                   : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+               }`}
+               initial={{ opacity: 0, scale: 0.8 }}
+               animate={{ 
+                 opacity: 1, 
+                 scale: 1
+               }}
+               transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+               whileHover={{ scale: 1.05 }}
+               whileTap={{ scale: 0.95 }}
+               onClick={() => setSelectedTime(index)}
+             >
+               {time}
+             </motion.div>
+           ))}
+         </div>
       </div>
 
       {/* Booking Progress */}
@@ -872,29 +884,33 @@ const MobileBooking = () => {
               transition={{ duration: 0.1 }}
             />
           </div>
-          <div className="text-xs text-gray-600 text-center">
-            Booking appointment...
-          </div>
+           <div className="text-xs text-gray-600 text-center">
+             {t('creationWeb.mockups.booking')}...
+           </div>
         </motion.div>
       )}
 
-      {/* Book Now Button */}
-      <div className="p-2">
-        <motion.button
-          className="w-full h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center shadow-sm"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleBookNow}
-          disabled={isBooking}
-        >
-          <div className="text-xs text-white font-semibold">
-            {isBooking ? t('creationWeb.mockups.booking') : t('creationWeb.mockups.bookNow')}
-          </div>
-        </motion.button>
-      </div>
+       {/* Book Now Button */}
+       <div className="p-2">
+         <motion.button
+           className={`w-full h-8 rounded-lg flex items-center justify-center shadow-sm font-semibold transition-all duration-300 ${
+             isBooking 
+               ? 'bg-gradient-to-r from-blue-500 to-blue-600' 
+               : 'bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600'
+           }`}
+           initial={{ opacity: 0, y: 10 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.8 }}
+           whileHover={{ scale: isBooking ? 1 : 1.02 }}
+           whileTap={{ scale: isBooking ? 1 : 0.98 }}
+           onClick={handleBookNow}
+           disabled={isBooking}
+         >
+           <div className="text-sm text-white">
+             {isBooking ? t('creationWeb.mockups.booking') : t('creationWeb.mockups.bookNow')}
+           </div>
+         </motion.button>
+       </div>
     </div>
   );
 };
@@ -904,9 +920,9 @@ const MobileClientDashboard = () => {
   const { t } = useI18n();
   const [balance, setBalance] = useState(12450);
   const [transactions] = useState([
-    { type: "received", amount: 250, description: "Payment received", icon: "💰" },
-    { type: "sent", amount: -150, description: "Transfer sent", icon: "💸" },
-    { type: "received", amount: 500, description: "Salary deposit", icon: "💳" }
+    { type: "received", amount: 250, description: t('creationWeb.mockups.paymentReceived'), icon: "💰" },
+    { type: "sent", amount: -150, description: t('creationWeb.mockups.transferSent'), icon: "💸" },
+    { type: "received", amount: 500, description: t('creationWeb.mockups.salaryDeposit'), icon: "💳" }
   ]);
   const [currentTransaction, setCurrentTransaction] = useState(0);
 
@@ -931,7 +947,7 @@ const MobileClientDashboard = () => {
     <div className="h-full bg-gradient-to-b from-white to-slate-50">
       {/* Header */}
       <div className="h-8 bg-white border-b border-gray-100 flex items-center justify-between px-3">
-        <div className="text-xs font-bold text-gray-800">My Account</div>
+        <div className="text-xs font-bold text-gray-800">{t('creationWeb.mockups.myAccount')}</div>
         <div className="w-4 h-4 bg-gray-100 rounded-lg flex items-center justify-center">
           <motion.div 
             className="w-2 h-2 bg-gray-400 rounded-full"
@@ -948,7 +964,7 @@ const MobileClientDashboard = () => {
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          <div className="text-xs text-white">Account Balance</div>
+          <div className="text-xs text-white">{t('creationWeb.mockups.accountBalance')}</div>
           <motion.div 
             className="text-xs text-emerald-100"
             key={balance}
@@ -956,7 +972,7 @@ const MobileClientDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            ${balance.toLocaleString()}.00
+            €{balance.toLocaleString()}.00
           </motion.div>
         </motion.div>
       </div>
@@ -1005,11 +1021,11 @@ const MobileClientDashboard = () => {
         >
           {t('creationWeb.mockups.recentActivity')}
         </motion.div>
-        <div className="space-y-1">
+        <div className="space-y-2">
           {transactions.map((transaction, index) => (
             <motion.div 
               key={index}
-              className="h-4 bg-gray-100 rounded-lg border border-gray-200 flex items-center px-2"
+              className="min-h-6 bg-gray-100 rounded-lg border border-gray-200 flex items-center px-3 py-2"
               initial={{ opacity: 0, x: -20 }}
               animate={{ 
                 opacity: 1, 
@@ -1019,7 +1035,7 @@ const MobileClientDashboard = () => {
               transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
             >
               <motion.div 
-                className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                className={`w-2 h-2 rounded-full mr-3 flex-shrink-0 ${
                   transaction.type === 'received' ? 'bg-green-500' : 'bg-blue-500'
                 }`}
                 animate={{ 
@@ -1028,9 +1044,9 @@ const MobileClientDashboard = () => {
                 }}
                 transition={{ duration: 0.3 }}
               />
-              <div className="text-xs text-gray-600 flex-1">{transaction.description}</div>
+              <div className="text-xs text-gray-700 flex-1 leading-tight">{transaction.description}</div>
               <motion.div 
-                className={`text-xs font-medium ${
+                className={`text-xs font-semibold whitespace-nowrap ${
                   transaction.amount > 0 ? 'text-green-600' : 'text-red-600'
                 }`}
                 key={transaction.amount}
@@ -1038,7 +1054,9 @@ const MobileClientDashboard = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                {transaction.amount > 0 ? '+' : ''}${Math.abs(transaction.amount)}
+                <span className={transaction.amount > 0 ? 'text-green-600' : 'text-red-600'}>
+                  {transaction.amount > 0 ? '+' : ''}€{Math.abs(transaction.amount)}
+                </span>
               </motion.div>
             </motion.div>
           ))}
