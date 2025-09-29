@@ -28,13 +28,13 @@ const buildIndustriesData = (t: (k: string) => string) => ([
     id: 3,
     title: t('industries.cards.logisticsTitle'),
     description: t('industries.cards.logisticsDesc'),
-    image: logisticsImg.src
+    image: manufacturingImg.src
   },
   {
     id: 4,
     title: t('industries.cards.manufacturingTitle'),
     description: t('industries.cards.manufacturingDesc'),
-    image: manufacturingImg.src
+    image: logisticsImg.src
   },
   {
     id: 5,
@@ -60,9 +60,9 @@ export default function IndustriesSection() {
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 5; // Increased from 0.5 for faster scrolling
-    const scrollInterval = 50; // Faster updates for smoother movement
+    const scrollSpeed = 2; // Faster scrolling speed
     let isPaused = false;
+    let animationId: number;
 
     const autoScroll = () => {
       if (scrollContainer && !isPaused) {
@@ -77,11 +77,18 @@ export default function IndustriesSection() {
           scrollPosition = 0;
         }
         
-        scrollContainer.scrollLeft = scrollPosition;
+        // Use smooth scrolling
+        scrollContainer.scrollTo({
+          left: scrollPosition,
+          behavior: 'auto' // Use 'auto' for better performance
+        });
       }
+      
+      animationId = requestAnimationFrame(autoScroll);
     };
 
-    const intervalId = setInterval(autoScroll, scrollInterval);
+    // Start the animation
+    animationId = requestAnimationFrame(autoScroll);
 
     // Pause on hover
     const handleMouseEnter = () => {
@@ -92,13 +99,28 @@ export default function IndustriesSection() {
       isPaused = false;
     };
 
+    // Pause on touch for mobile
+    const handleTouchStart = () => {
+      isPaused = true;
+    };
+    
+    const handleTouchEnd = () => {
+      setTimeout(() => {
+        isPaused = false;
+      }, 1500); // Resume after 1.5 seconds
+    };
+
     scrollContainer.addEventListener('mouseenter', handleMouseEnter);
     scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+    scrollContainer.addEventListener('touchstart', handleTouchStart);
+    scrollContainer.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      clearInterval(intervalId);
+      cancelAnimationFrame(animationId);
       scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
       scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchend', handleTouchEnd);
     };
   }, []);
 
@@ -129,29 +151,34 @@ export default function IndustriesSection() {
       {/* Automated Scrolling Cards Container - Full Width */}
       <div 
         ref={scrollContainerRef}
-        className="flex gap-4 sm:gap-6 overflow-x-hidden scroll-smooth px-4 sm:px-6"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-4 sm:gap-6 overflow-x-auto px-4 sm:px-6"
+        style={{ 
+          scrollbarWidth: 'none', 
+          msOverflowStyle: 'none',
+          scrollBehavior: 'auto',
+          willChange: 'scroll-position'
+        }}
       >
         {/* First set of cards */}
         {industriesData.map((industry) => (
-          <div key={industry.id} className="flex-shrink-0">
+          <div key={industry.id} className="flex-shrink-0 w-80 sm:w-96">
             <RetailCard
               title={industry.title}
               description={industry.description}
               image={industry.image}
-              className="w-100 h-120 border-0"
+              className="w-full h-80 border-0"
             />
           </div>
         ))}
         
         {/* Duplicate cards for seamless loop */}
         {industriesData.map((industry) => (
-          <div key={`duplicate-${industry.id}`} className="flex-shrink-0">
+          <div key={`duplicate-${industry.id}`} className="flex-shrink-0 w-80 sm:w-96">
             <RetailCard
               title={industry.title}
               description={industry.description}
               image={industry.image}
-              className="w-100 h-120 border-0"
+              className="w-full h-80 border-0"
             />
           </div>
         ))}
@@ -159,8 +186,12 @@ export default function IndustriesSection() {
 
       {/* Custom scrollbar styles */}
       <style jsx>{`
-        .overflow-x-hidden::-webkit-scrollbar {
+        .overflow-x-auto::-webkit-scrollbar {
           display: none;
+        }
+        .overflow-x-auto {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>

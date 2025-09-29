@@ -405,12 +405,12 @@ export default function RobotPandaPage() {
             
             {/* Main Title with Enhanced Typography */}
             <h2 className="text-6xl font-bold text-foreground mb-8 leading-tight bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              {t("robots.realWorldImpact")}
+              {t("robots.realWorldImpactPanda")}
             </h2>
             
             {/* Subtitle with Professional Styling */}
             <h3 className="text-3xl font-semibold text-secondary mb-10 leading-relaxed max-w-4xl mx-auto">
-              {t("robots.trustedByLeaders")}
+              {t("robots.trustedByLeadersPanda")}
             </h3>
             
             {/* Enhanced Description */}

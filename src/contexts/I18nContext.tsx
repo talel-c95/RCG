@@ -147,6 +147,10 @@ const translations = {
       serviceCases: "Service Cases",
       realWorldImpact: "Real-World Impact Across Industries",
       trustedByLeaders: "Trusted by Leaders in Logistics and Manufacturing",
+      realWorldImpactPanda: "Real-World Impact in Restaurants and Hotels",
+      trustedByLeadersPanda: "Trusted by Leaders in Food Service and Hospitality",
+      realWorldImpactAmy: "Real-World Impact in Restaurants, Hotels and Commercial Spaces",
+      trustedByLeadersAmy: "Trusted by Leaders in Food Service and Hospitality",
       xbot: {
         headline: "Revolutionizing Industrial Delivery",
         subhead: "Your Smart Logistics Assistant",
@@ -574,6 +578,10 @@ const translations = {
       serviceCases: "Cas clients",
       realWorldImpact: "Impact réel dans les industries",
       trustedByLeaders: "Plébiscité par les leaders de la logistique et du manufacturing",
+      realWorldImpactPanda: "Impact réel dans les restaurants et les hôtels",
+      trustedByLeadersPanda: "Plébiscité par les leaders de la restauration et hôtellerie",
+      realWorldImpactAmy: "Impact réel dans restaurants, hôtels et espaces commerciaux",
+      trustedByLeadersAmy: "Plébiscité par les leaders de la restauration et hôtellerie",
       xbot: {
         headline: "Révolutionner la livraison industrielle",
         subhead: "Votre assistant logistique intelligent",
