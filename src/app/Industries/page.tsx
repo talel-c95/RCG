@@ -60,7 +60,7 @@ export default function IndustriesSection() {
     if (!scrollContainer) return;
 
     let scrollPosition = 0;
-    const scrollSpeed = 2; // Faster scrolling speed
+    const scrollSpeed = 0.5; // Slower, more relaxed scrolling speed
     let isPaused = false;
     let animationId: number;
 
