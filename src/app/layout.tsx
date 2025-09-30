@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rkhamiconsulting-group.com'),
   title: "Rkhami Consulting Group – Business Consulting Services",
   description: "Rkhami Consulting Group helps businesses grow with expert consulting solutions.",
   keywords: ["business consulting", "automation", "robotics", "strategy", "innovation"],
