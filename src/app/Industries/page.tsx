@@ -3,50 +3,43 @@
 import React, { useEffect, useRef } from 'react';
 import { useI18n } from '@/contexts/I18nContext';
 import RetailCard from "@/components/Cards/cards";
-// Import images from src/images folder
-import foodImg from "@/images/food.jpg";
-import agricultureImg from "@/images/drone-spraying-fertilizer-vegetable-green-plants-agriculture-technology-farm-automation.jpg";
-import logisticsImg from "@/images/teens-doing-experiments-robotics-laboratory-boy-protective-glasses-looking-robot.jpg";
-import manufacturingImg from "@/images/3d-rendering-biorobots-concept.jpg";
-import healthcareImg from "@/images/doctors-wearing-vr-simulation-with-hologram-medical-technology.jpg";
-import retailImg from "@/images/robot-with-several-shipping-boxes.jpg";
 
 const buildIndustriesData = (t: (k: string) => string) => ([
   {
     id: 1,
     title: t('industries.cards.foodTitle'),
     description: t('industries.cards.foodDesc'),
-    image: foodImg.src
+    image: '/images/food.jpg'
   },
   {
     id: 2,
     title: t('industries.cards.agricultureTitle'),
     description: t('industries.cards.agricultureDesc'),
-    image: agricultureImg.src
+    image: '/images/drone-spraying-fertilizer-vegetable-green-plants-agriculture-technology-farm-automation.jpg'
   },
   {
     id: 3,
     title: t('industries.cards.logisticsTitle'),
     description: t('industries.cards.logisticsDesc'),
-    image: manufacturingImg.src
+    image: '/images/3d-rendering-biorobots-concept.jpg'
   },
   {
     id: 4,
     title: t('industries.cards.manufacturingTitle'),
     description: t('industries.cards.manufacturingDesc'),
-    image: logisticsImg.src
+    image: '/images/teens-doing-experiments-robotics-laboratory-boy-protective-glasses-looking-robot.jpg'
   },
   {
     id: 5,
     title: t('industries.cards.healthcareTitle'),
     description: t('industries.cards.healthcareDesc'),
-    image: healthcareImg.src
+    image: '/images/doctors-wearing-vr-simulation-with-hologram-medical-technology.jpg'
   },
   {
     id: 6,
     title: t('industries.cards.retailTitle'),
     description: t('industries.cards.retailDesc'),
-    image: retailImg.src
+    image: '/images/robot-with-several-shipping-boxes.jpg'
   }
 ]);
 

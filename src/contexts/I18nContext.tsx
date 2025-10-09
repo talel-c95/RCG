@@ -893,7 +893,7 @@ interface I18nProviderProps {
 
 export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>("en");
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true); // Start as mounted to avoid SSR issues
 
   // Initialize language from localStorage or browser preference
   useEffect(() => {
@@ -921,8 +921,6 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
 
   // Translation function
   const t = (key: string, params?: Record<string, string | number>): string => {
-    if (!mounted) return key; // Return key during SSR
-    
     const keys = key.split(".");
     let value: unknown = translations[language];
     

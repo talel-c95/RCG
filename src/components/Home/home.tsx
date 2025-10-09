@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { useI18n } from "@/contexts/I18nContext"
-import heroImg from "@/images/human-robot-handshake-collaboration-digital-age.jpg"
 import WhyChooseUs from "./WhyChooseUs"
 
 const HomeHero = () => {
@@ -14,11 +13,13 @@ const HomeHero = () => {
       <section id="home" className="relative w-full h-screen overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={heroImg}
+            src="/images/human-robot-handshake-collaboration-digital-age.jpg"
             alt="Human and robot handshake"
             fill
             priority
             className="object-cover"
+            quality={85}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40" />
         </div>

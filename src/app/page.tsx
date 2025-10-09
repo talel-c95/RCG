@@ -1,45 +1,31 @@
 "use client";
 
-import Navbar from "@/components/Layout/Navbar";
-
-import HomeHero from "@/components/Home/home";
-import IndustriesPage from "@/app/Industries/page";
-import ServicesPage from "@/app/Services/page";
-import Footer from "@/components/Layout/Footer";
-import AboutPage from "@/app/About/page";
-import FAQPage from "@/app/FQA/page";
-
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
 
+  useEffect(() => {
+    // Check if preloader was shown in this session
+    const preloaderShown = sessionStorage.getItem('preloaderShown');
+    
+    if (!preloaderShown) {
+      // First visit in this session - show preloader
+      router.replace('/loading');
+    } else {
+      // Already shown preloader in this session - go to main
+      router.replace('/main');
+    }
+  }, [router]);
+
+  // Show loading while checking
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
-      <Navbar />
-      
-      <section id="home">
-        <HomeHero />
-      </section>
-
-      {/* Industries Section */}
-      <section id="Industries">
-        <IndustriesPage />
-      </section>
-      
-      <section id="About">
-        <AboutPage />
-      </section>
-      
-      <section id="Services">
-        <ServicesPage />
-      </section>
-
-
-      <section id="FQA">
-        <FAQPage />
-      </section>
-
-      {/* Footer Section */}
-      <Footer />
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-foreground">Loading...</p>
+      </div>
     </div>
   );
 }

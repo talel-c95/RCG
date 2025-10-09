@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import logoPng from "@/images/craiyon_162456_image.png";
 import { useI18n } from "@/contexts/I18nContext";
 import ThemeToggleButton from "@/components/Buttons/ThemeButton";
 import LanguageButton from "@/components/Buttons/LanguageButton";
@@ -77,9 +76,9 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
     }
 
     // For hash links, navigate to main page first if not already there
-    if (item.isHash && pathname !== '/') {
-      router.push('/');
-      setTimeout(() => scrollToSection(item.href), 300);
+    if (item.isHash && pathname !== '/main') {
+      router.push('/main');
+      setTimeout(() => scrollToSection(item.href), 500);
     } else if (item.isHash) {
       // Already on main page, just scroll
       scrollToSection(item.href);
@@ -91,15 +90,27 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
 
   // Helper function to scroll to section with retry logic
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Retry after a short delay if element not found
+    const scrollToElement = () => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately
+    if (!scrollToElement()) {
+      // Retry with increasing delays if element not found
       setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+        if (!scrollToElement()) {
+          setTimeout(() => {
+            if (!scrollToElement()) {
+              setTimeout(() => {
+                scrollToElement();
+              }, 500);
+            }
+          }, 300);
         }
       }, 200);
     }
@@ -118,7 +129,7 @@ const Navbar = ({ onNavigate }: NavbarProps) => {
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3">
               <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                 <Image
-                  src={logoPng}
+                  src="/images/craiyon_162456_image.png"
                   alt="Rkhami Group Logo"
                   fill
                   priority

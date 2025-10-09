@@ -7,7 +7,6 @@ import { useI18n } from '@/contexts/I18nContext';
 
 
 import { MapPin, Mail, Phone } from 'lucide-react';
-import logoPng from "@/images/craiyon_162456_image.png";
 import CompanyMap from './CompanyMap';
 
 const Footer: React.FC = () => {
@@ -36,7 +35,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-3 sm:space-x-4">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white/30 rounded-2xl flex items-center justify-center p-2 sm:p-3 bg-white/10 backdrop-blur-sm">
                     <Image
-                      src={logoPng}
+                      src="/images/craiyon_162456_image.png"
                       alt="RCG Logo"
                       width={100}
                       height={100}

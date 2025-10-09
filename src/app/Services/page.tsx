@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 import ServiceCard from '@/components/Cards/servicesCard';
 import Image from 'next/image';
-import rfn from "@/images/craiyon_225631_image.png";
 
 const ServicesPage: React.FC = () => {
   const { t } = useI18n();
@@ -84,7 +83,7 @@ const ServicesPage: React.FC = () => {
           <div className="flex-shrink-0 w-full lg:w-[500px] flex justify-center lg:justify-end">
             <div className="flex justify-center items-center">
               <Image
-                src={rfn}
+                src="/images/craiyon_225631_image.png"
                 alt="Technology Services"
                 width={0}
                 height={0}

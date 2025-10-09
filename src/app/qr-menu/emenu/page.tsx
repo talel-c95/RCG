@@ -105,7 +105,7 @@ export default function EmenuPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <style jsx>{`
         .perspective-1000 {
           perspective: 1000px;

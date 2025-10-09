@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { generateTimeSlots, getMinDate, getMaxDate } from '@/utils/meetingUtils';
 import Image from 'next/image';
-import telephoneLaptopImage from '@/images/businessman-talking-phone.jpg';
 import { useI18n } from '@/contexts/I18nContext';
 import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
@@ -120,7 +119,7 @@ export default function ContactPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src={telephoneLaptopImage}
+            src="/images/businessman-talking-phone.jpg"
             alt="Modern workspace with telephone and laptop"
             fill
             className="object-cover opacity-20"

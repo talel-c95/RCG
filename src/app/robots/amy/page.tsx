@@ -75,12 +75,12 @@ export default function RobotAmyPage() {
     return () => clearInterval(interval);
   }, [features.length]);
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-surface/20 overflow-x-hidden">
         {/* Navbar */}
         <Navbar onNavigate={handleNavigation} />
         
         {/* Hero Section with Video Background */}
-        <div className="relative h-screen w-full overflow-hidden">
+        <section className="relative w-full h-screen overflow-hidden">
           <video
             ref={videoRef}
             src="/images/amy.mp4"
@@ -111,7 +111,7 @@ export default function RobotAmyPage() {
               </svg>
             )}
           </button>
-        </div>
+        </section>
 
       {/* Features Section */}
       <section className="py-20 bg-surface">
@@ -119,7 +119,7 @@ export default function RobotAmyPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column - Robot Image Card */}
             <div className="flex justify-center">
-              <div className="w-96 h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+              <div className="w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-br from-primary to-surface rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative max-w-[calc(100vw-3rem)]">
                 <Image
                   src="/images/amy1.webp"
                   alt={t("robots.nameAmy")}
@@ -257,7 +257,7 @@ export default function RobotAmyPage() {
 
             {/* Right Column - Robot Image Card */}
             <div className="flex justify-center">
-              <div className="w-full h-96 rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative">
+              <div className="w-full h-96 rounded-2xl shadow-2xl border-4 border-primary overflow-hidden relative max-w-[calc(100vw-3rem)]">
                 <Image
                   src="/images/amy31.jpg"
                   alt={t("robots.nameAmy")}

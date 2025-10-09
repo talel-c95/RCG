@@ -4,8 +4,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   images: {
-    unoptimized: true,
-    qualities: [60, 75, 85, 90],
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
