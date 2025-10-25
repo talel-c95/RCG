@@ -263,7 +263,16 @@ export default function EmenuPage() {
 
             {/* Right: just the picture */}
             <div className="flex justify-center lg:justify-end">
-              <Image src="/images/qr.png" alt="E-Menu visual" width={500} height={400} className="object-cover" priority />
+              <Image 
+                src="/images/qr.png" 
+                alt="E-Menu visual" 
+                width={500} 
+                height={400} 
+                className="object-cover" 
+                priority 
+                quality={85}
+                sizes="(max-width: 768px) 100vw, 500px"
+              />
                   </div>
                 </div>
               </div>

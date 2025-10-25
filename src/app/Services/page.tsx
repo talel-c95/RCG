@@ -90,6 +90,8 @@ const ServicesPage: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                 className="w-auto h-auto max-w-[400px] sm:max-w-[500px] lg:max-w-[600px]"
                 style={{ objectFit: 'contain' }}
+                loading="lazy"
+                quality={85}
               />
             </div>
           </div>

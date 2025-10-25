@@ -28,6 +28,9 @@ const RetailCard: React.FC<RetailCardProps> = ({
           alt={title}
           fill
           className="object-cover"
+          loading="lazy"
+          quality={80}
+          sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 400px"
         />
         
         {/* Overlay with Label and Description */}

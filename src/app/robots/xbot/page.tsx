@@ -221,7 +221,8 @@ export default function RobotXbotPage() {
                   fill
                   className="object-cover"
                   priority
-                  quality={90}
+                  quality={85}
+                  sizes="(max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
                 />
               </div>
             </div>

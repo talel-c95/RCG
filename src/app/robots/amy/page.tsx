@@ -264,7 +264,8 @@ export default function RobotAmyPage() {
                   fill
                   className="object-contain object-bottom"
                   priority
-                  quality={90}
+                  quality={85}
+                  sizes="100vw"
                 />
               </div>
             </div>
