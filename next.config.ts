@@ -25,7 +25,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Enable experimental features for better performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react', '@react-three/fiber', '@react-three/drei'],
   },
   // Add caching headers for better performance
