@@ -23,7 +23,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({ locations }) => {
   
   // Create Google Maps iframe URL with marker
   // Using the exact coordinates for precise pin placement
-  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${mainLocation.lat},${mainLocation.lng}&center=${mainLocation.lat},${mainLocation.lng}&zoom=16&maptype=roadmap`;
+  const mapUrl = `https://www.google.com/maps?q=${mainLocation.lat},${mainLocation.lng}&z=16&output=embed`;
 
   return (
     <div className="w-full h-full flex flex-col">

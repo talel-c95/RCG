@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -12,6 +12,7 @@
     "@googlemaps/react-wrapper": "^1.2.0",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
+    "@splinetool/runtime": "^1.12.36",
     "@types/nodemailer": "^7.0.1",
     "@types/three": "^0.180.0",
     "@vercel/speed-insights": "^1.2.0",

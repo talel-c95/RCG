@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  distDir: ".next-build",
+  outputFileTracingRoot: path.join(__dirname),
   // Removed static export to enable API routes
   trailingSlash: true,
   images: {
     formats: ['image/webp', 'image/avif'],
+    qualities: [60, 70, 75, 80, 85, 90, 100],
     remotePatterns: [
       {
         protocol: 'https',

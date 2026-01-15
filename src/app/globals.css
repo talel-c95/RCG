@@ -187,3 +187,82 @@ img[data-loading="true"] {
     background-position: 0% 50%;
   }
 }
+
+@keyframes heroTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroStrategyReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroParagraphReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroStrategyGlowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.14);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(34, 211, 238, 0.26);
+  }
+}
+
+.hero-title-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroTitleReveal 0.8s ease-out forwards;
+}
+
+.hero-strategy-reveal {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: heroStrategyReveal 0.6s ease-out forwards;
+  animation-delay: 0.85s;
+}
+
+.hero-paragraph-reveal {
+  opacity: 0;
+  animation: heroParagraphReveal 0.7s ease-out forwards;
+  animation-delay: 1.55s;
+}
+
+.hero-strategy-glow {
+  will-change: text-shadow;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.14);
+  animation: heroStrategyGlowPulse 3.6s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-reveal,
+  .hero-strategy-reveal,
+  .hero-paragraph-reveal,
+  .hero-strategy-glow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    text-shadow: none !important;
+  }
+}

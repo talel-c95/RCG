@@ -7,16 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Check if preloader was shown in this session
-    const preloaderShown = sessionStorage.getItem('preloaderShown');
-    
-    if (!preloaderShown) {
-      // First visit in this session - show preloader
-      router.replace('/loading');
-    } else {
-      // Already shown preloader in this session - go to main
-      router.replace('/main');
-    }
+    router.replace("/loading");
   }, [router]);
 
   // Show loading while checking
