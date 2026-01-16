@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
 
 export type ThemeMode = "light" | "dark";
 
@@ -13,12 +13,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-function applyThemeToDocument(newTheme: ThemeMode) {
-  if (typeof document === "undefined") return;
-  document.documentElement.setAttribute("data-theme", newTheme);
-}
-
-export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeMode>("light");
   const [isReady, setIsReady] = useState(false);
 
@@ -27,7 +22,9 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     try {
       localStorage.setItem("theme", newTheme);
     } catch {}
-    applyThemeToDocument(newTheme);
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("data-theme", newTheme);
+    }
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -36,13 +33,14 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
       try {
         localStorage.setItem("theme", nextTheme);
       } catch {}
-      applyThemeToDocument(nextTheme);
+      if (typeof document !== "undefined") {
+        document.documentElement.setAttribute("data-theme", nextTheme);
+      }
       return nextTheme;
     });
   }, []);
 
   useEffect(() => {
-    // Initialize theme on mount: prefer saved theme, fallback to system
     let initial: ThemeMode = "light";
     try {
       const saved = localStorage.getItem("theme") as ThemeMode | null;
@@ -55,10 +53,12 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     } catch {}
     setTheme(initial);
     setIsReady(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setTheme]);
 
-  const value = useMemo<ThemeContextValue>(() => ({ theme, setTheme, toggleTheme, isReady }), [theme, setTheme, toggleTheme, isReady]);
+  const value = useMemo(
+    () => ({ theme, setTheme, toggleTheme, isReady }),
+    [theme, setTheme, toggleTheme, isReady]
+  );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
